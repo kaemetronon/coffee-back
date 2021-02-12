@@ -8,16 +8,12 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "shops")
+@Table(name = "user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoffeeShop {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
-    private String name;
-    private String description;
-    private String phone;
-    private String img;
 }

@@ -8,16 +8,16 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "shops")
+@Table(name = "order_history")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoffeeShop {
+public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
-    private String name;
-    private String description;
-    private String phone;
-    private String img;
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private User user;
 }

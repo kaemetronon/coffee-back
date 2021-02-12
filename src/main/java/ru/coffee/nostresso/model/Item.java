@@ -12,12 +12,16 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoffeeShop {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
+
+    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+    @JoinColumn (name= "id", insertable = false, updatable = false)
+    private CoffeeShop shop;
+
     private String name;
-    private String description;
-    private String phone;
-    private String img;
+    private String volume;
+    private Integer cost;
 }

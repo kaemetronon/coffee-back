@@ -9,5 +9,4 @@ public class NoStressoApplication {
     public static void main(String[] args) {
         SpringApplication.run(NoStressoApplication.class, args);
     }
-
 }
