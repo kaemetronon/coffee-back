@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminUserController {
 
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
 
     @PostMapping("/")
     public User addUser(@RequestBody User user) {
@@ -30,11 +30,6 @@ public class AdminUserController {
     @DeleteMapping("/")
     public String deleteUser(@RequestBody UUID userId) {
         return "user " + userId + " deleted";
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<FailResponce> handle(Exception e) {
-        return new ResponseEntity<>(new FailResponce(e.getMessage()), HttpStatus.valueOf(501));
     }
 }
 

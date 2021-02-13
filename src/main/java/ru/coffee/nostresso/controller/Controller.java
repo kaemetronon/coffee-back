@@ -32,9 +32,9 @@ public class Controller {
         return coffeeShopRepo.findAll();
     }
 
-    @GetMapping("/items/{coffeeShopId}")
-    public Optional<CoffeeShop> getItemsFromCoffeeShop(@PathVariable UUID coffeeShopId) {
-        return coffeeShopRepo.findById(coffeeShopId);
+    @GetMapping("/shop/{shopId}")
+    public Iterable<Item> getItemsFromCoffeeShop(@PathVariable UUID shopId) {
+        return itemRepo.findByShopId(shopId);
     }
 
     @GetMapping("/history")
@@ -44,32 +44,27 @@ public class Controller {
 
     @GetMapping("/")
     public String qwe() {
-        var coffeeshop = new CoffeeShop(UUID.fromString("129e9654-4b71-412e-9b43-70cf3aad4786"), "descr",
-                "img path", "name", "phone");
-        coffeeShopRepo.save(coffeeshop);
-        coffeeShopRepo.findAll();
-        coffeeShopRepo.findById(UUID.fromString("129e9654-4b71-412e-9b43-70cf3aad4786"));
-
-        var item = new Item(UUID.fromString("1125216b-71ff-4abc-a99c-7951b4ea2aef"), coffeeshop, "name",
-                "value", 1488);
-        itemRepo.save(item);
-        itemRepo.findAll();
-        itemRepo.findById(UUID.fromString("1125216b-71ff-4abc-a99c-7951b4ea2aef"));
-
-        var user = new User(UUID.fromString("56a24763-efd7-43c8-bc65-72c3e2019146"));
-        userRepo.save(user);
-        userRepo.findAll();
-        userRepo.findById(UUID.fromString("56a24763-efd7-43c8-bc65-72c3e2019146"));
-
-        var history = new History(UUID.fromString("53f7dc19-4e96-4f20-9475-69e1d0fce6c2"), user);
-        historyRepo.save(history);
-        historyRepo.findAll();
-        historyRepo.findById(UUID.fromString("53f7dc19-4e96-4f20-9475-69e1d0fce6c2"));
+//        var coffeeshop = new CoffeeShop(UUID.fromString("129e9654-4b71-412e-9b43-70cf3aad4786"), "descr",
+//                "img path", "name", "phone");
+//        coffeeShopRepo.save(coffeeshop);
+//        coffeeShopRepo.findAll();
+//        coffeeShopRepo.findById(UUID.fromString("129e9654-4b71-412e-9b43-70cf3aad4786"));
+//
+//        var item = new Item(UUID.fromString("1125216b-71ff-4abc-a99c-7951b4ea2aef"), coffeeshop, "name",
+//                "value", 1488);
+//        itemRepo.save(item);
+//        itemRepo.findAll();
+//        itemRepo.findById(UUID.fromString("1125216b-71ff-4abc-a99c-7951b4ea2aef"));
+//
+//        var user = new User(UUID.fromString("56a24763-efd7-43c8-bc65-72c3e2019146"));
+//        userRepo.save(user);
+//        userRepo.findAll();
+//        userRepo.findById(UUID.fromString("56a24763-efd7-43c8-bc65-72c3e2019146"));
+//
+//        var history = new History(UUID.fromString("53f7dc19-4e96-4f20-9475-69e1d0fce6c2"), user);
+//        historyRepo.save(history);
+//        historyRepo.findAll();
+//        historyRepo.findById(UUID.fromString("53f7dc19-4e96-4f20-9475-69e1d0fce6c2"));
         return "done";
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<FailResponce> handle(Exception e) {
-        return new ResponseEntity<>(new FailResponce(e.getMessage()), HttpStatus.valueOf(501));
     }
 }

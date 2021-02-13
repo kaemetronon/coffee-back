@@ -6,4 +6,6 @@ import ru.coffee.nostresso.model.Item;
 import java.util.UUID;
 
 public interface ItemRepo extends CrudRepository<Item, UUID> {
+
+    Iterable<Item> findByShopId(UUID shopId);
 }

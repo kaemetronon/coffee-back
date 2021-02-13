@@ -1,11 +1,8 @@
 package ru.coffee.nostresso.controller.admin;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.Item;
-import ru.coffee.nostresso.model.response.FailResponce;
 import ru.coffee.nostresso.repo.ItemRepo;
 
 import java.util.UUID;
@@ -15,25 +12,32 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminItemController {
 
-    private ItemRepo itemRepo;
+    private final ItemRepo itemRepo;
+
+    @GetMapping
+    public Iterable<Item> getAllItems() {
+        return itemRepo.findAll();
+    }
 
     @PostMapping("/")
     public Item addItem(@RequestBody Item item) {
-        return item;
+        return itemRepo.save(item);
     }
+
 
     @PutMapping("/")
     public Item updateItem(@RequestBody Item item) {
-        return item;
+        if (itemRepo.existsById(item.getId()))
+            return itemRepo.save(item);
+        else
+            throw new RuntimeException("there is not passed id");
     }
 
     @DeleteMapping("/")
-    public String deleteItem(@RequestBody UUID itemId) {
+    public String deleteItem(@RequestParam UUID itemId) {
+        itemRepo.deleteById(itemId);
         return "item " + itemId + " deleted";
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<FailResponce> handle(Exception e) {
-        return new ResponseEntity<>(new FailResponce(e.getMessage()), HttpStatus.valueOf(501));
-    }
+
 }

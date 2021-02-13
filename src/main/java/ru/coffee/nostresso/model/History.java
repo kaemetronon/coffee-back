@@ -14,10 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class History {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private User user;
+    private UUID userId;
 }

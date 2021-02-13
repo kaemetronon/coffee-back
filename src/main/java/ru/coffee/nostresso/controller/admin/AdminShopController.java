@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminShopController {
 
-    private CoffeeShopRepo coffeeShopRepo;
+    private final CoffeeShopRepo coffeeShopRepo;
 
     @PostMapping("/")
     public CoffeeShop addShop(@RequestBody CoffeeShop coffeeShop) {
@@ -30,10 +30,5 @@ public class AdminShopController {
     @DeleteMapping("/")
     public String deleteShop(@RequestBody UUID shopId) {
         return "coffeeshop " + shopId + " deleted";
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<FailResponce> handle(Exception e) {
-        return new ResponseEntity<>(new FailResponce(e.getMessage()), HttpStatus.valueOf(501));
     }
 }

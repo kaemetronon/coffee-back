@@ -1,5 +1,6 @@
 package ru.coffee.nostresso.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,19 +9,15 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "shops")
+@Table(name = "items")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
-    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name= "id", insertable = false, updatable = false)
-    private CoffeeShop shop;
-
+    private UUID shopId;
     private String name;
     private String volume;
     private Integer cost;
