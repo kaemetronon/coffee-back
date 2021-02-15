@@ -8,20 +8,16 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "shops")
+@Table(name="reviews")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CoffeeShop {
+@AllArgsConstructor
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String name;
+    private UUID shopId;
+    private UUID userId;
     private String description;
-    private String address;
-    private String phone;
-    private String img;
-    private Double middleRate;
-    private Double x;
-    private Double y;
+    private Integer rate;
 }

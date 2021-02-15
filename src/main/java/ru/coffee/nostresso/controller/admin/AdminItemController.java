@@ -38,6 +38,4 @@ public class AdminItemController {
         itemRepo.deleteById(itemId);
         return "item " + itemId + " deleted";
     }
-
-
 }
