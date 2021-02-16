@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,7 +17,11 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private UUID shopId;
+
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
+
     private String name;
     private String volume;
     private Integer cost;

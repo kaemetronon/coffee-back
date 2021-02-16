@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,4 +18,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
+
+    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
+    private List<OrderHistory> histories;
+
+    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
+    private List<Review> reviews;
+
 }

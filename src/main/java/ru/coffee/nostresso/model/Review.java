@@ -16,8 +16,15 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private UUID shopId;
-    private UUID userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
+
     private String description;
     private Integer rate;
 }

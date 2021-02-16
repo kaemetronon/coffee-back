@@ -8,20 +8,19 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "shops")
+@Table(name="address")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CoffeeShop {
+@AllArgsConstructor
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String name;
-    private String description;
-    private String address;
-    private String phone;
-    private String img;
-    private Double middleRate;
+
+    @OneToOne(mappedBy = "address")
+    private Shop shop;
+
+    private String addressText;
     private Double x;
     private Double y;
 }

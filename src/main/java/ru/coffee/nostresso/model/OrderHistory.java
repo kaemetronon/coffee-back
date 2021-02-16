@@ -12,9 +12,12 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class History {
+public class OrderHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private UUID userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

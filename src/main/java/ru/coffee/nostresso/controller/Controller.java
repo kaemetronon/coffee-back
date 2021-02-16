@@ -2,10 +2,10 @@ package ru.coffee.nostresso.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.coffee.nostresso.model.CoffeeShop;
-import ru.coffee.nostresso.model.History;
+import ru.coffee.nostresso.model.Shop;
+import ru.coffee.nostresso.model.OrderHistory;
 import ru.coffee.nostresso.model.Item;
-import ru.coffee.nostresso.repo.CoffeeShopRepo;
+import ru.coffee.nostresso.repo.ShopRepo;
 import ru.coffee.nostresso.repo.HistoryRepo;
 import ru.coffee.nostresso.repo.ItemRepo;
 import ru.coffee.nostresso.repo.UserRepo;
@@ -18,14 +18,14 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Controller {
 
-    private final CoffeeShopRepo coffeeShopRepo;
+    private final ShopRepo shopRepo;
     private final ItemRepo itemRepo;
     private final UserRepo userRepo;
     private final HistoryRepo historyRepo;
 
     @GetMapping("/coffees")
-    public Iterable<CoffeeShop> getAllCoffeeshops() {
-        return coffeeShopRepo.findAll();
+    public Iterable<Shop> getAllCoffeeshops() {
+        return shopRepo.findAll();
     }
 
     @GetMapping("/shop")
@@ -34,7 +34,7 @@ public class Controller {
     }
 
     @GetMapping("/history")
-    public Optional<History> getHistory(@RequestParam UUID userId) {
+    public Optional<OrderHistory> getHistory(@RequestParam UUID userId) {
         return historyRepo.findByUserId(userId);
     }
 }
