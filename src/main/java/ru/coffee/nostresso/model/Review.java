@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 @Table(name="reviews")
 @Data
-@EqualsAndHashCode(exclude={"shop","user"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {

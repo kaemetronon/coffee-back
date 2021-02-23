@@ -14,7 +14,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "items")
 @Data
-@EqualsAndHashCode(exclude={"shop"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class Item {
@@ -30,4 +29,8 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "shop_id")
     private Shop shop;
+//    @JsonIgnore
+//    @ManyToOne
+//    @JoinColumn(name = "shopping_cart_id")
+//    private ShoppingCart shoppingCart;
 }

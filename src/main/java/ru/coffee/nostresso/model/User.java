@@ -15,7 +15,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 @Data
-@EqualsAndHashCode(exclude={"histories","reviews"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -29,6 +28,9 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<OrderHistory> histories;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<ShoppingCart> shoppingCards;
 
     private String name;
     private LocalDateTime dateUpdated;
@@ -46,4 +48,11 @@ public class User {
         }
         this.histories = histories;
     }
+
+//    public void setShoppingCarts(List<ShoppingCart> shoppingCards) {
+//        if (shoppingCards != null) {
+//            shoppingCards.forEach(a -> a.setUser(this));
+//        }
+//        this.shoppingCards = shoppingCards;
+//    }
 }

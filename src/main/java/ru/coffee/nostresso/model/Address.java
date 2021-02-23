@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "address")
 @Data
-@EqualsAndHashCode(exclude={"shop"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {

@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "order_history")
 @Data
-@EqualsAndHashCode(exclude={"user"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderHistory {
