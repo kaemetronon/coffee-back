@@ -29,8 +29,8 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "shop_id")
     private Shop shop;
-//    @JsonIgnore
-//    @ManyToOne
-//    @JoinColumn(name = "shopping_cart_id")
-//    private ShoppingCart shoppingCart;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "shopping_cart_id")
+    private ShoppingCart shoppingCart;
 }

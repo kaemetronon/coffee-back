@@ -11,34 +11,33 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-//@Entity
-//@Table(name = "shopping_cart")
-//@Data
-//@EqualsAndHashCode(exclude={"user"})
-//@AllArgsConstructor
-//@NoArgsConstructor
+@Entity
+@Table(name = "shopping_cart")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ShoppingCart {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private UUID id;
-//
-//    @JsonIgnore
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "shopping_cart", cascade = CascadeType.ALL)
-//    private List<Item> items;
-//
-//    private String comment;
-//    private LocalDateTime dateUpload;
-//    private LocalDateTime timeToDo;
-//    private String transactionId;
-//
-//    public void setItems(List<Item> items) {
-//        if (items != null) {
-//            items.forEach(a -> a.setShoppingCart(this));
-//        }
-//        this.items = items;
-//    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @JsonIgnore
+    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL)
+    private List<Item> items;
+
+    private String comment;
+    private LocalDateTime dateUpload;
+    private LocalDateTime timeToDo;
+    private String transactionId;
+
+    public void setItems(List<Item> items) {
+        if (items != null) {
+            items.forEach(a -> a.setShoppingCart(this));
+        }
+        this.items = items;
+    }
 }
