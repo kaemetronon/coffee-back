@@ -17,7 +17,6 @@ public class UuidTypeHandler extends BaseTypeHandler<UUID> {
 
     @Override
     public void setParameter(PreparedStatement ps, int i, UUID parameter, JdbcType jdbcType) throws SQLException {
-        if (parameter == null)
         super.setParameter(ps, i, parameter, jdbcType);
     }
 

@@ -12,8 +12,6 @@ import java.util.UUID;
 public interface ItemMapper {
     List<Item> getAllItems();
 
-    Iterable<Item> findByShopId(UUID shopId);
-
     List<Item> getItemsByShop(UUID shopId);
 
     void addItem(UUID id, Item item);
@@ -21,5 +19,8 @@ public interface ItemMapper {
     void updateItem(Item item);
 
     void deleteItem(UUID id);
+
+
+
 
 }

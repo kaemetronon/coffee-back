@@ -13,7 +13,14 @@ public interface ReviewMapper {
 
     List<Review> findAll();
 
-    Review save(Review item);
+    List<Review> findByShop(UUID shopId);
+
+    List<Review> findByUser(UUID userId);
+
+    void addReview(UUID id, Review item);
+
+    void updateReview(Review item);
 
     void deleteById(UUID itemId);
+
 }

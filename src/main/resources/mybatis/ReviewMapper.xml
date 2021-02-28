@@ -3,8 +3,42 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.coffee.nostresso.model.mapper.ReviewMapper">
-    <insert id="save"></insert>
-    <delete id="deleteById"></delete>
 
-    <select id="findAll" resultType="ru.coffee.nostresso.model.entity.Review"></select>
+    <select id="findAll" resultType="ru.coffee.nostresso.model.entity.Review">
+        select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
+        from reviews
+    </select>
+    <select id="findByShop" resultType="ru.coffee.nostresso.model.entity.Review">
+        select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
+        from reviews
+        where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </select>
+    <select id="findByUser" resultType="ru.coffee.nostresso.model.entity.Review">
+        select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
+        from reviews
+        where user_id = #{userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </select>
+
+    <insert id="addReview">
+        insert into reviews (id, description, rate, shop_id, user_id)
+        values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+                #{item.description},
+                #{item.rate},
+                #{item.shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+                #{item.userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler})
+    </insert>
+    <update id="updateReview">
+        update reviews
+        set description  = #{description},
+            rate         = #{rate},
+            shop_id      = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+            user_id      = #{userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+            date_updated = now()
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </update>
+    <delete id="deleteById">
+        delete
+        from reviews
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </delete>
 </mapper>

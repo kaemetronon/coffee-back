@@ -3,7 +3,7 @@ package ru.coffee.nostresso.controller.admin;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.Review;
-import ru.coffee.nostresso.model.mapper.ReviewMapper;
+import ru.coffee.nostresso.service.review.IReviewService;
 
 import java.util.UUID;
 
@@ -12,27 +12,37 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminReviewController {
 
-    private final ReviewMapper reviewRepo;
+    private final IReviewService reviewService;
 
     @GetMapping
-    public Iterable<Review> getAllItems() {
-        return reviewRepo.findAll();
+    public Iterable<Review> getAllReviews() {
+        return reviewService.findAll();
     }
 
-    @PostMapping("/")
-    public Review addItem(@RequestBody Review item) {
-        return reviewRepo.save(item);
+    @GetMapping("/byShop")
+    public Iterable<Review> getReviewsByShop(@RequestParam UUID shopId) {
+        return reviewService.findByShop(shopId);
     }
 
-
-    @PutMapping("/")
-    public Review updateItem(@RequestBody Review item) {
-            return reviewRepo.save(item);
+    @GetMapping("/byUser")
+    public Iterable<Review> getReviewsByUser(@RequestParam UUID userId) {
+        return reviewService.findByUser(userId);
     }
 
-    @DeleteMapping("/")
-    public String deleteItem(@RequestParam UUID itemId) {
-        reviewRepo.deleteById(itemId);
-        return "item " + itemId + " deleted";
+    @PostMapping
+    public UUID addReview(@RequestBody Review review) {
+        return reviewService.addReview(review);
+    }
+
+    @PutMapping
+    public String updateReivew(@RequestBody Review review) {
+        reviewService.updateReview(review);
+        return "review updated";
+    }
+
+    @DeleteMapping
+    public String deleteReview(@RequestParam UUID reviewId) {
+        reviewService.deleteById(reviewId);
+        return "review  " + reviewId + " deleted";
     }
 }

@@ -36,7 +36,7 @@ public class Controller {
     @GetMapping("/shop")
     @ApiOperation(value = "get items by coffeeshop", response = Item[].class)
     public Iterable<Item> getItemsFromCoffeeShop(@RequestParam UUID shopId) {
-        return itemRepo.findByShopId(shopId);
+        return itemRepo.getItemsByShop(shopId);
     }
 
     @GetMapping("/history")
