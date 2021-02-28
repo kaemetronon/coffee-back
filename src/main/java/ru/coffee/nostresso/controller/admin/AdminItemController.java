@@ -2,8 +2,9 @@ package ru.coffee.nostresso.controller.admin;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.coffee.nostresso.model.Item;
-import ru.coffee.nostresso.repo.ItemRepo;
+import ru.coffee.nostresso.model.entity.Item;
+import ru.coffee.nostresso.model.mapper.ItemMapper;
+import ru.coffee.nostresso.service.item.IItemService;
 
 import java.util.UUID;
 
@@ -12,30 +13,32 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminItemController {
 
-    private final ItemRepo itemRepo;
+    private final IItemService itemService;
 
     @GetMapping
     public Iterable<Item> getAllItems() {
-        return itemRepo.findAll();
+        return itemService.getAllItems();
     }
 
-    @PostMapping("/")
-    public Item addItem(@RequestBody Item item) {
-        return itemRepo.save(item);
+    @GetMapping("/byShop")
+    public Iterable<Item> getItemByShopId(@RequestParam UUID shopId) {
+        return itemService.getItemsByShop(shopId);
     }
 
-
-    @PutMapping("/")
-    public Item updateItem(@RequestBody Item item) {
-        if (itemRepo.existsById(item.getId()))
-            return itemRepo.save(item);
-        else
-            throw new RuntimeException("there is not passed id");
+    @PostMapping
+    public UUID addItem(@RequestBody Item item) {
+        return itemService.addItem(item);
     }
 
-    @DeleteMapping("/")
+    @PutMapping
+    public String updateItem(@RequestBody Item item) {
+        itemService.updateItem(item);
+        return "item updated";
+    }
+
+    @DeleteMapping
     public String deleteItem(@RequestParam UUID itemId) {
-        itemRepo.deleteById(itemId);
+        itemService.deleteItem(itemId);
         return "item " + itemId + " deleted";
     }
 }

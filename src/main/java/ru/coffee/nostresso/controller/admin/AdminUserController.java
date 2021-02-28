@@ -2,8 +2,8 @@ package ru.coffee.nostresso.controller.admin;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.coffee.nostresso.model.User;
-import ru.coffee.nostresso.repo.UserRepo;
+import ru.coffee.nostresso.model.entity.User;
+import ru.coffee.nostresso.model.mapper.UserMapper;
 
 import java.util.UUID;
 
@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminUserController {
 
-    private final UserRepo userRepo;
+    private final UserMapper userRepo;
 
     @GetMapping("/")
     public Iterable<User> getUsers() {
@@ -26,10 +26,7 @@ public class AdminUserController {
 
     @PutMapping("/")
     public User updateUser(@RequestBody User user) {
-        if (userRepo.existsById(user.getId()))
             return userRepo.save(user);
-        else
-            throw new RuntimeException("there is not passed id");
     }
 
     @DeleteMapping("/")

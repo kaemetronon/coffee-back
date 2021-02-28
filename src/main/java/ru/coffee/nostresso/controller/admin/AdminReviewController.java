@@ -2,8 +2,8 @@ package ru.coffee.nostresso.controller.admin;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.coffee.nostresso.model.Review;
-import ru.coffee.nostresso.repo.ReviewRepo;
+import ru.coffee.nostresso.model.entity.Review;
+import ru.coffee.nostresso.model.mapper.ReviewMapper;
 
 import java.util.UUID;
 
@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminReviewController {
 
-    private final ReviewRepo reviewRepo;
+    private final ReviewMapper reviewRepo;
 
     @GetMapping
     public Iterable<Review> getAllItems() {
@@ -27,10 +27,7 @@ public class AdminReviewController {
 
     @PutMapping("/")
     public Review updateItem(@RequestBody Review item) {
-        if (reviewRepo.existsById(item.getId()))
             return reviewRepo.save(item);
-        else
-            throw new RuntimeException("there is not passed id");
     }
 
     @DeleteMapping("/")

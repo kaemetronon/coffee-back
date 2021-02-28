@@ -2,8 +2,8 @@ package ru.coffee.nostresso.controller.admin;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.coffee.nostresso.model.Shop;
-import ru.coffee.nostresso.repo.ShopRepo;
+import ru.coffee.nostresso.model.entity.Shop;
+import ru.coffee.nostresso.model.mapper.ShopMapper;
 
 import java.util.UUID;
 
@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminShopController {
 
-    private final ShopRepo shopRepo;
+    private final ShopMapper shopRepo;
 
     @GetMapping("/")
     public Iterable<Shop> getAllCoffeeShops() {
@@ -27,10 +27,7 @@ public class AdminShopController {
 
     @PutMapping("/")
     public Shop updateCoffeeShop(@RequestBody Shop shop) {
-        if (shopRepo.existsById(shop.getId()))
             return shopRepo.save(shop);
-        else
-            throw new RuntimeException("there is not passed id");
     }
 
     @DeleteMapping("/")
