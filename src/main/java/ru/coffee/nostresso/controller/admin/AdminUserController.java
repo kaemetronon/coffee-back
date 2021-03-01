@@ -6,6 +6,7 @@ import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.service.user.IUserService;
 
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/user")
@@ -15,7 +16,7 @@ public class AdminUserController {
     private final IUserService userService;
 
     @GetMapping("/")
-    public Iterable<User> getUsers() {
+    public List<User> getUsers() {
         return userService.findAll();
     }
 

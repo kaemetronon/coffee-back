@@ -7,6 +7,7 @@ import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.model.mapper.UserMapper;
 
 import java.util.UUID;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public Iterable<User> findAll() {
+    public List<User> findAll() {
         return userMapper.findAll();
     }
 

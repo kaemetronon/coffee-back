@@ -3,9 +3,10 @@ package ru.coffee.nostresso.service.user;
 import ru.coffee.nostresso.model.entity.User;
 
 import java.util.UUID;
+import java.util.List;
 
 public interface IUserService {
-    Iterable<User> findAll();
+    List<User> findAll();
 
     UUID addUser(User user);
 

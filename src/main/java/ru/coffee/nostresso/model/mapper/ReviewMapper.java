@@ -17,7 +17,7 @@ public interface ReviewMapper {
 
     List<Review> findByUser(UUID userId);
 
-    List<Integer> getMiddleRates();
+    List<Integer> getRatesByShop(UUID shopId);
 
     void addReview(UUID id, Review item);
 

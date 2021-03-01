@@ -6,30 +6,28 @@
 
     <select id="findAll" resultType="ru.coffee.nostresso.model.entity.Shop">
         select id,
-               address_id   as addressId,
                name,
                description,
                phone,
                img,
                date_updated as dateUpdated,
                middle_rate  as middleRate
-        from shops;
+        from shops
+        where is_deleted = false
     </select>
 
     <insert id="addShop">
         insert into shops (id, name, description, phone, img, middle_rate)
         values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
-                #{shop.addressId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
                 #{shop.name},
                 #{shop.description},
                 #{shop.phone},
                 #{shop.img},
-                #{shop.midleRate})
+                0)
     </insert>
     <update id="updateShop">
         update shops
-        set address_id   = #{addressId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
-            name         = #{name},
+        set name         = #{name},
             description  = #{description},
             phone        = #{phone},
             img          = #{img},
@@ -41,12 +39,13 @@
         update shops
         set middle_rate  = #{rate},
             date_updated = now()
-        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+        where id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
 
-    <delete id="deleteById">
-        delete
-        from items
-        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
-    </delete>
+    <update id="deleteById">
+        update shops
+        set is_deleted= true,
+            date_updated=now()
+        where id = #{coffeeShopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </update>
 </mapper>

@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface ShopMapper {
     List<Shop> findAll();
 
-    UUID addShop(UUID id, Shop shop);
+    void addShop(UUID id, Shop shop);
 
     void updateShop(Shop shop);
 

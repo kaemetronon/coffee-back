@@ -7,19 +7,25 @@
     <select id="findAll" resultType="ru.coffee.nostresso.model.entity.Review">
         select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
         from reviews
+        where is_deleted = false
     </select>
     <select id="findByShop" resultType="ru.coffee.nostresso.model.entity.Review">
         select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
         from reviews
         where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+          and is_deleted = false
     </select>
     <select id="findByUser" resultType="ru.coffee.nostresso.model.entity.Review">
         select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
         from reviews
         where user_id = #{userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+          and is_deleted = false
     </select>
-    <select id="getMiddleRates" resultType="java.lang.Integer">
-        select middle_rate from reviews
+    <select id="getRatesByShop" resultType="java.lang.Integer">
+        select rate
+        from reviews
+        where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+          and is_deleted = false
     </select>
 
     <insert id="addReview">
@@ -39,9 +45,10 @@
             date_updated = now()
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
-    <delete id="deleteById">
-        delete
-        from reviews
+    <update id="deleteById">
+        update reviews
+        set is_deleted = true,
+            date_updated = now()
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
-    </delete>
+    </update>
 </mapper>

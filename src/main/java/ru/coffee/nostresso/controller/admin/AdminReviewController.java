@@ -6,6 +6,7 @@ import ru.coffee.nostresso.model.entity.Review;
 import ru.coffee.nostresso.service.review.IReviewService;
 
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/review")
@@ -15,17 +16,17 @@ public class AdminReviewController {
     private final IReviewService reviewService;
 
     @GetMapping
-    public Iterable<Review> getAllReviews() {
+    public List<Review> getAllReviews() {
         return reviewService.findAll();
     }
 
     @GetMapping("/byShop")
-    public Iterable<Review> getReviewsByShop(@RequestParam UUID shopId) {
+    public List<Review> getReviewsByShop(@RequestParam UUID shopId) {
         return reviewService.findByShop(shopId);
     }
 
     @GetMapping("/byUser")
-    public Iterable<Review> getReviewsByUser(@RequestParam UUID userId) {
+    public List<Review> getReviewsByUser(@RequestParam UUID userId) {
         return reviewService.findByUser(userId);
     }
 

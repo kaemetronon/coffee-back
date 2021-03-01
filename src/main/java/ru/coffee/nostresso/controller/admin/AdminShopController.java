@@ -6,6 +6,7 @@ import ru.coffee.nostresso.model.entity.Shop;
 import ru.coffee.nostresso.service.shop.IShopService;
 
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/shop")
@@ -15,7 +16,7 @@ public class AdminShopController {
     private final IShopService shopService;
 
     @GetMapping
-    public Iterable<Shop> getAllCoffeeShops() {
+    public List<Shop> getAllCoffeeShops() {
         return shopService.findAll();
     }
 

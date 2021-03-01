@@ -12,7 +12,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Shop {
     private UUID id;
-    private UUID addressId;
     private String name;
     private String description;
     private String phone;

@@ -18,7 +18,7 @@ public class ShopServiceImpl implements IShopService {
     private ShopMapper shopMapper;
 
     @Override
-    public Iterable<Shop> findAll() {
+    public List<Shop> findAll() {
         return shopMapper.findAll();
     }
 

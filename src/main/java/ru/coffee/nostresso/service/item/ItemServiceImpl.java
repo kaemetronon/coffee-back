@@ -7,6 +7,7 @@ import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.model.mapper.ItemMapper;
 
 import java.util.UUID;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -16,12 +17,12 @@ public class ItemServiceImpl implements IItemService {
     private ItemMapper itemMapper;
 
     @Override
-    public Iterable<Item> getAllItems() {
+    public List<Item> getAllItems() {
         return itemMapper.getAllItems();
     }
 
     @Override
-    public Iterable<Item> getItemsByShop(UUID shopId) {
+    public List<Item> getItemsByShop(UUID shopId) {
         return itemMapper.getItemsByShop(shopId);
     }
 

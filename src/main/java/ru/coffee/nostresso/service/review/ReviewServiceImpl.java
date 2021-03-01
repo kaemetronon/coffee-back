@@ -8,6 +8,7 @@ import ru.coffee.nostresso.model.mapper.ReviewMapper;
 import ru.coffee.nostresso.service.shop.ShopServiceImpl;
 
 import java.util.UUID;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -15,21 +16,20 @@ import java.util.UUID;
 public class ReviewServiceImpl implements IReviewService {
 
     private ReviewMapper reviewMapper;
-
     private ShopServiceImpl shopService;
 
     @Override
-    public Iterable<Review> findAll() {
+    public List<Review> findAll() {
         return reviewMapper.findAll();
     }
 
     @Override
-    public Iterable<Review> findByShop(UUID shopId) {
+    public List<Review> findByShop(UUID shopId) {
         return reviewMapper.findByShop(shopId);
     }
 
     @Override
-    public Iterable<Review> findByUser(UUID userId) {
+    public List<Review> findByUser(UUID userId) {
         return reviewMapper.findByUser(userId);
     }
 
@@ -37,23 +37,20 @@ public class ReviewServiceImpl implements IReviewService {
     public UUID addReview(UUID shopId, Review item) {
         var id = UUID.randomUUID();
         reviewMapper.addReview(id, item);
-
-        shopService.updateShopMiddleRate(shopId, reviewMapper.getMiddleRates());
-
+        shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
         return id;
     }
 
     @Override
     public void updateReview(UUID shopId, Review item) {
         reviewMapper.updateReview(item);
-
-        shopService.updateShopMiddleRate(shopId, reviewMapper.getMiddleRates());
+        shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }
 
     @Override
     public void deleteById(UUID shopId, UUID id) {
         reviewMapper.deleteById(id);
 
-        shopService.updateShopMiddleRate(shopId, reviewMapper.getMiddleRates());
+        shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }
 }

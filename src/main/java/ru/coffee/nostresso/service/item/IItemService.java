@@ -3,12 +3,13 @@ package ru.coffee.nostresso.service.item;
 import ru.coffee.nostresso.model.entity.Item;
 
 import java.util.UUID;
+import java.util.List;
 
 public interface IItemService {
 
-    Iterable<Item> getAllItems();
+    List<Item> getAllItems();
 
-    Iterable<Item> getItemsByShop(UUID shopId);
+    List<Item> getItemsByShop(UUID shopId);
 
     UUID addItem(Item item);
 

@@ -5,13 +5,16 @@
 <mapper namespace="ru.coffee.nostresso.model.mapper.UserMapper">
 
     <select id="findAll" resultType="ru.coffee.nostresso.model.entity.User">
-        select id, name, date_updated as dateUpdated from users
+        select id, name, date_updated as dateUpdated
+        from users
+        where is_deleted = false
     </select>
 
     <insert id="addUser">
-        insert into users (id, name)
+        insert into users (id, name, date_updated)
         values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
-                #{user.name})
+                #{user.name},
+                now())
     </insert>
     <update id="updateUser">
         update users
@@ -19,11 +22,10 @@
             date_updated = now()
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
-    <delete id="deleteById">
-        delete
-        from users
+    <update id="deleteById">
+        update users
+        set is_deleted   = true,
+            date_updated = now()
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
-    </delete>
-
-
+    </update>
 </mapper>

@@ -6,6 +6,7 @@ import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.service.item.IItemService;
 
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/item")
@@ -15,12 +16,12 @@ public class AdminItemController {
     private final IItemService itemService;
 
     @GetMapping
-    public Iterable<Item> getAllItems() {
+    public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
 
     @GetMapping("/byShop")
-    public Iterable<Item> getItemByShopId(@RequestParam UUID shopId) {
+    public List<Item> getItemByShopId(@RequestParam UUID shopId) {
         return itemService.getItemsByShop(shopId);
     }
 
