@@ -15,6 +15,4 @@ public interface IItemService {
     void updateItem(Item item);
 
     void deleteItem(UUID itemId);
-
-
 }

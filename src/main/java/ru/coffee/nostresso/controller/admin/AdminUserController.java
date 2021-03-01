@@ -3,7 +3,7 @@ package ru.coffee.nostresso.controller.admin;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.User;
-import ru.coffee.nostresso.model.mapper.UserMapper;
+import ru.coffee.nostresso.service.user.IUserService;
 
 import java.util.UUID;
 
@@ -12,26 +12,27 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminUserController {
 
-    private final UserMapper userRepo;
+    private final IUserService userService;
 
     @GetMapping("/")
     public Iterable<User> getUsers() {
-        return userRepo.findAll();
+        return userService.findAll();
     }
 
     @PostMapping("/")
-    public User addUser(@RequestBody User user) {
-        return userRepo.save(user);
+    public UUID addUser(@RequestBody User user) {
+        return userService.addUser(user);
     }
 
     @PutMapping("/")
-    public User updateUser(@RequestBody User user) {
-            return userRepo.save(user);
+    public String updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+        return "user updated";
     }
 
     @DeleteMapping("/")
     public String deleteUser(@RequestParam UUID userId) {
-        userRepo.deleteById(userId);
+        userService.deleteById(userId);
         return "user " + userId + " deleted";
     }
 }

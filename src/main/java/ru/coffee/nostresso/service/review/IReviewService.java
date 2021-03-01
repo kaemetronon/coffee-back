@@ -12,9 +12,9 @@ public interface IReviewService {
 
     Iterable<Review> findByUser(UUID userId);
 
-    UUID addReview(Review item);
+    UUID addReview(UUID shopId, Review item);
 
-    void updateReview(Review item);
+    void updateReview(UUID shopId, Review item);
 
-    void deleteById(UUID itemId);
+    void deleteById(UUID shopId, UUID itemId);
 }

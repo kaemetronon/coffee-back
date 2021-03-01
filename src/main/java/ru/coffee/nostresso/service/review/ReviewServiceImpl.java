@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.coffee.nostresso.model.entity.Review;
 import ru.coffee.nostresso.model.mapper.ReviewMapper;
+import ru.coffee.nostresso.service.shop.ShopServiceImpl;
 
 import java.util.UUID;
 
@@ -14,6 +15,8 @@ import java.util.UUID;
 public class ReviewServiceImpl implements IReviewService {
 
     private ReviewMapper reviewMapper;
+
+    private ShopServiceImpl shopService;
 
     @Override
     public Iterable<Review> findAll() {
@@ -31,19 +34,26 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public UUID addReview(Review item) {
+    public UUID addReview(UUID shopId, Review item) {
         var id = UUID.randomUUID();
         reviewMapper.addReview(id, item);
+
+        shopService.updateShopMiddleRate(shopId, reviewMapper.getMiddleRates());
+
         return id;
     }
 
     @Override
-    public void updateReview(Review item) {
+    public void updateReview(UUID shopId, Review item) {
         reviewMapper.updateReview(item);
+
+        shopService.updateShopMiddleRate(shopId, reviewMapper.getMiddleRates());
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(UUID shopId, UUID id) {
         reviewMapper.deleteById(id);
+
+        shopService.updateShopMiddleRate(shopId, reviewMapper.getMiddleRates());
     }
 }

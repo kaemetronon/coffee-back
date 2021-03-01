@@ -18,6 +18,9 @@
         from reviews
         where user_id = #{userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </select>
+    <select id="getMiddleRates" resultType="java.lang.Integer">
+        select middle_rate from reviews
+    </select>
 
     <insert id="addReview">
         insert into reviews (id, description, rate, shop_id, user_id)

@@ -17,10 +17,11 @@ public interface ReviewMapper {
 
     List<Review> findByUser(UUID userId);
 
+    List<Integer> getMiddleRates();
+
     void addReview(UUID id, Review item);
 
     void updateReview(Review item);
 
     void deleteById(UUID itemId);
-
 }

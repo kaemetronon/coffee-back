@@ -30,19 +30,19 @@ public class AdminReviewController {
     }
 
     @PostMapping
-    public UUID addReview(@RequestBody Review review) {
-        return reviewService.addReview(review);
+    public UUID addReview(@RequestParam UUID shopId, @RequestBody Review review) {
+        return reviewService.addReview(shopId, review);
     }
 
     @PutMapping
-    public String updateReivew(@RequestBody Review review) {
-        reviewService.updateReview(review);
+    public String updateReivew(@RequestParam UUID shopId, @RequestBody Review review) {
+        reviewService.updateReview(shopId, review);
         return "review updated";
     }
 
     @DeleteMapping
-    public String deleteReview(@RequestParam UUID reviewId) {
-        reviewService.deleteById(reviewId);
+    public String deleteReview(@RequestParam UUID shopId, @RequestParam UUID reviewId) {
+        reviewService.deleteById(shopId, reviewId);
         return "review  " + reviewId + " deleted";
     }
 }

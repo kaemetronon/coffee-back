@@ -11,7 +11,9 @@ import java.util.UUID;
 public interface UserMapper {
     Iterable<User> findAll();
 
-    User save(User user);
+    UUID addUser(UUID id, User user);
+
+    void updateUser(User user);
 
     void deleteById(UUID userId);
 }

@@ -11,7 +11,7 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class ItemServiceImpl implements IItemService{
+public class ItemServiceImpl implements IItemService {
 
     private ItemMapper itemMapper;
 
@@ -41,6 +41,4 @@ public class ItemServiceImpl implements IItemService{
     public void deleteItem(UUID itemId) {
         itemMapper.deleteItem(itemId);
     }
-
-
 }

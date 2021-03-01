@@ -3,7 +3,7 @@ package ru.coffee.nostresso.controller.admin;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.Shop;
-import ru.coffee.nostresso.model.mapper.ShopMapper;
+import ru.coffee.nostresso.service.shop.IShopService;
 
 import java.util.UUID;
 
@@ -12,27 +12,28 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AdminShopController {
 
-    private final ShopMapper shopRepo;
+    private final IShopService shopService;
 
-    @GetMapping("/")
+    @GetMapping
     public Iterable<Shop> getAllCoffeeShops() {
-        return shopRepo.findAll();
+        return shopService.findAll();
     }
 
-    @PostMapping("/")
-    public Shop addCoffeeShop(@RequestBody Shop shop) {
-        return shopRepo.save(shop);
+    @PostMapping
+    public UUID addCoffeeShop(@RequestBody Shop shop) {
+        return shopService.addShop(shop);
     }
 
 
-    @PutMapping("/")
-    public Shop updateCoffeeShop(@RequestBody Shop shop) {
-            return shopRepo.save(shop);
+    @PutMapping
+    public String updateCoffeeShop(@RequestBody Shop shop) {
+        shopService.updateShop(shop);
+        return "Shop updated";
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping
     public String deleteCoffeeShop(@RequestParam UUID coffeeShopId) {
-        shopRepo.deleteById(coffeeShopId);
+        shopService.deleteById(coffeeShopId);
         return "CoffeeShop " + coffeeShopId + " deleted";
     }
 }

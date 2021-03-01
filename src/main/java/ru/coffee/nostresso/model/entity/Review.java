@@ -17,5 +17,4 @@ public class Review {
     private LocalDateTime dateUpdated;
     private UUID shopId;
     private UUID userId;
-
 }

@@ -3,8 +3,50 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.coffee.nostresso.model.mapper.ShopMapper">
-    <insert id="save"></insert>
-    <delete id="deleteById"></delete>
 
-    <select id="findAll" resultType="ru.coffee.nostresso.model.entity.Shop"></select>
+    <select id="findAll" resultType="ru.coffee.nostresso.model.entity.Shop">
+        select id,
+               address_id   as addressId,
+               name,
+               description,
+               phone,
+               img,
+               date_updated as dateUpdated,
+               middle_rate  as middleRate
+        from shops;
+    </select>
+
+    <insert id="addShop">
+        insert into shops (id, name, description, phone, img, middle_rate)
+        values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+                #{shop.addressId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+                #{shop.name},
+                #{shop.description},
+                #{shop.phone},
+                #{shop.img},
+                #{shop.midleRate})
+    </insert>
+    <update id="updateShop">
+        update shops
+        set address_id   = #{addressId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+            name         = #{name},
+            description  = #{description},
+            phone        = #{phone},
+            img          = #{img},
+            middle_rate  = #{middleRate},
+            date_updated = now()
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </update>
+    <update id="updateShopMiddleRate">
+        update shops
+        set middle_rate  = #{rate},
+            date_updated = now()
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </update>
+
+    <delete id="deleteById">
+        delete
+        from items
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </delete>
 </mapper>

@@ -19,7 +19,7 @@
                 #{item.name},
                 #{item.volume},
                 #{item.cost},
-                #{item. shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler})
+                #{item.shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler})
     </insert>
 
     <update id="updateItem">
