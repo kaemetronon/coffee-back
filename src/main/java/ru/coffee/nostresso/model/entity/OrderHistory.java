@@ -5,13 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderHistory {
-    private UUID id;
-    private UUID userId;
+    private Integer id;
+    private Integer userId;
     private LocalDateTime dateCreated;
 }

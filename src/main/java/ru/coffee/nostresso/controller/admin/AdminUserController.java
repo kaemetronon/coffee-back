@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.service.user.IUserService;
 
-import java.util.UUID;
 import java.util.List;
 
 @RestController
@@ -21,7 +20,7 @@ public class AdminUserController {
     }
 
     @PostMapping("/")
-    public UUID addUser(@RequestBody User user) {
+    public Integer addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
@@ -32,7 +31,7 @@ public class AdminUserController {
     }
 
     @DeleteMapping("/")
-    public String deleteUser(@RequestParam UUID userId) {
+    public String deleteUser(@RequestParam Integer userId) {
         userService.deleteById(userId);
         return "user " + userId + " deleted";
     }

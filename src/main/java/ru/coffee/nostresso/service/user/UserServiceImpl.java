@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.model.mapper.UserMapper;
 
-import java.util.UUID;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -22,8 +22,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UUID addUser(User user) {
-        var id = UUID.randomUUID();
+    public Integer addUser(User user) {
+        var id = new Random().nextInt(1_000_000);
         userMapper.addUser(id, user);
         return id;
     }
@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void deleteById(UUID userId) {
+    public void deleteById(Integer userId) {
         userMapper.deleteById(userId);
     }
 }

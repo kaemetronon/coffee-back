@@ -10,7 +10,7 @@ import ru.coffee.nostresso.model.mapper.ShopMapper;
 
 import java.util.List;
 import java.util.OptionalDouble;
-import java.util.UUID;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -26,8 +26,8 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public UUID addShop(Shop shop) {
-        var id = UUID.randomUUID();
+    public Integer addShop(Shop shop) {
+        var id = new Random().nextInt(1_000_000);
         shopMapper.addShop(id, shop);
         return id;
     }
@@ -37,25 +37,25 @@ public class ShopServiceImpl implements IShopService {
         shopMapper.updateShop(shop);
     }
 
-    public void updateShopMiddleRate(UUID shopId, List<Integer> rates) {
+    public void updateShopMiddleRate(Integer shopId, List<Integer> rates) {
         OptionalDouble rate = rates.stream().mapToInt(i -> i).average();
         if (rate.isPresent())
             shopMapper.updateShopMiddleRate(shopId, rate.getAsDouble());
     }
 
     @Override
-    public void deleteById(UUID coffeeShopId) {
+    public void deleteById(Integer coffeeShopId) {
         shopMapper.deleteById(coffeeShopId);
     }
 
     @Override
-    public Address getAddress(UUID shopId) {
+    public Address getAddress(Integer shopId) {
 //        non used
         return null;
     }
 
     @Override
-    public void addNewAddress(UUID shopId, Address address) {
+    public void addNewAddress(Integer shopId, Address address) {
         //        non used
     }
 
@@ -65,7 +65,7 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public void deleteAddress(UUID shopId) {
+    public void deleteAddress(Integer shopId) {
 //        non used
     }
 }

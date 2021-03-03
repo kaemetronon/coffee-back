@@ -12,7 +12,7 @@
 
     <insert id="addUser">
         insert into users (id, name, date_updated)
-        values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+        values (#{id},
                 #{user.name},
                 now())
     </insert>
@@ -20,12 +20,12 @@
         update users
         set name         = #{name},
             date_updated = now()
-        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+        where id = #{id}
     </update>
     <update id="deleteById">
         update users
         set is_deleted   = true,
             date_updated = now()
-        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+        where id = #{id}
     </update>
 </mapper>

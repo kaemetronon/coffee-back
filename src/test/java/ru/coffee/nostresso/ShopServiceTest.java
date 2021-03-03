@@ -10,7 +10,6 @@ import ru.coffee.nostresso.model.entity.Shop;
 import ru.coffee.nostresso.service.shop.ShopServiceImpl;
 
 import java.util.Arrays;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -22,7 +21,7 @@ public class ShopServiceTest {
     @Autowired
     private ShopServiceImpl shopService;
 
-    private UUID shopId = UUID.fromString("91a40717-c635-4af2-8ea9-787836af3a08");
+    private Integer shopId = 2;
 
     @Test
     public void findAllShops() {
@@ -67,7 +66,7 @@ public class ShopServiceTest {
 
     private Shop createItem() {
         var i = new Shop();
-        i.setId(UUID.randomUUID());
+        i.setId(4);
         i.setName("name");
         i.setDescription("dscr");
         i.setPhone("+7911");

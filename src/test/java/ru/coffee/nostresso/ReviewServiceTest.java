@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.coffee.nostresso.model.entity.Review;
 import ru.coffee.nostresso.service.review.IReviewService;
 
-import java.util.UUID;
-
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -19,9 +17,9 @@ public class ReviewServiceTest {
     @Autowired
     private IReviewService reviewService;
 
-    private UUID reviewId = UUID.fromString("f628876f-6608-42b3-89d8-ed1013fada3b");
-    private UUID shopId = UUID.fromString("91a40717-c635-4af2-8ea9-787836af3a08");
-    private UUID userid = UUID.fromString("91aa5dc1-2919-43bc-9867-30ac11108bb7");
+    private Integer reviewId = 1;
+    private Integer shopId = 2;
+    private Integer userid = 3;
 
     @Test
     public void getAllReviews() {
@@ -69,7 +67,7 @@ public class ReviewServiceTest {
 
     private Review createReview() {
         var i = new Review();
-        i.setId(UUID.randomUUID());
+        i.setId(2);
         i.setDescription("desccc");
         i.setRate(55);
         i.setShopId(shopId);

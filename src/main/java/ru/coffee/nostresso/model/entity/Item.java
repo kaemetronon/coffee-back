@@ -5,16 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Item {
-    private UUID id;
+    private Integer id;
     private String name;
     private String volume;
     private Integer cost;
     private LocalDateTime dateUpdated;
-    private UUID shopId;
+    private Integer shopId;
 }

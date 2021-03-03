@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.service.user.IUserService;
 
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -21,7 +20,7 @@ public class UserServiceTest {
     @Autowired
     private IUserService userService;
 
-    private UUID userId = UUID.fromString("91aa5dc1-2919-43bc-9867-30ac11108bb7");
+    private Integer userId =2;
 
     @Test
     public void findAllShops() {
@@ -58,7 +57,7 @@ public class UserServiceTest {
 
     private User createItem() {
         var i = new User();
-        i.setId(UUID.randomUUID());
+        i.setId(8);
         i.setName("name");
         return i;
     }

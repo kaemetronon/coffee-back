@@ -18,7 +18,7 @@
 
     <insert id="addShop">
         insert into shops (id, name, description, phone, img, middle_rate)
-        values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+        values (#{id},
                 #{shop.name},
                 #{shop.description},
                 #{shop.phone},
@@ -33,19 +33,19 @@
             img          = #{img},
             middle_rate  = #{middleRate},
             date_updated = now()
-        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+        where id = #{id}
     </update>
     <update id="updateShopMiddleRate">
         update shops
         set middle_rate  = #{rate},
             date_updated = now()
-        where id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+        where id = #{shopId}
     </update>
 
     <update id="deleteById">
         update shops
         set is_deleted= true,
             date_updated=now()
-        where id = #{coffeeShopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+        where id = #{coffeeShopId}
     </update>
 </mapper>

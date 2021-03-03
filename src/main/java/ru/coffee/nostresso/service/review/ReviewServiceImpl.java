@@ -7,8 +7,8 @@ import ru.coffee.nostresso.model.entity.Review;
 import ru.coffee.nostresso.model.mapper.ReviewMapper;
 import ru.coffee.nostresso.service.shop.ShopServiceImpl;
 
-import java.util.UUID;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -24,31 +24,31 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public List<Review> findByShop(UUID shopId) {
+    public List<Review> findByShop(Integer shopId) {
         return reviewMapper.findByShop(shopId);
     }
 
     @Override
-    public List<Review> findByUser(UUID userId) {
+    public List<Review> findByUser(Integer userId) {
         return reviewMapper.findByUser(userId);
     }
 
     @Override
-    public UUID addReview(UUID shopId, Review item) {
-        var id = UUID.randomUUID();
+    public Integer addReview(Integer shopId, Review item) {
+        var id = new Random().nextInt(1_000_000);
         reviewMapper.addReview(id, item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
         return id;
     }
 
     @Override
-    public void updateReview(UUID shopId, Review item) {
+    public void updateReview(Integer shopId, Review item) {
         reviewMapper.updateReview(item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }
 
     @Override
-    public void deleteById(UUID shopId, UUID id) {
+    public void deleteById(Integer shopId, Integer id) {
         reviewMapper.deleteById(id);
 
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));

@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.model.mapper.ItemMapper;
 
-import java.util.UUID;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -22,13 +22,13 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public List<Item> getItemsByShop(UUID shopId) {
+    public List<Item> getItemsByShop(Integer shopId) {
         return itemMapper.getItemsByShop(shopId);
     }
 
     @Override
-    public UUID addItem(Item item) {
-        var id = UUID.randomUUID();
+    public Integer addItem(Item item) {
+        var id = new Random().nextInt(1_000_000);
         itemMapper.addItem(id, item);
         return id;
     }
@@ -39,7 +39,7 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public void deleteItem(UUID itemId) {
+    public void deleteItem(Integer itemId) {
         itemMapper.deleteItem(itemId);
     }
 }

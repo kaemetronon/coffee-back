@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.service.item.IItemService;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -21,8 +19,8 @@ public class ItemServiceTest {
     @Autowired
     private IItemService itemService;
 
-    private UUID itemId = UUID.fromString("aeb5e5d5-39ae-4853-a211-03e4b3dda67c");
-    private UUID shopId = UUID.fromString("91a40717-c635-4af2-8ea9-787836af3a08");
+    private Integer itemId = 1;
+    private Integer shopId = 2;
 
     @Test
     public void getAllItems() {
@@ -64,7 +62,7 @@ public class ItemServiceTest {
 
     private Item createItem() {
         var i = new Item();
-        i.setId(UUID.randomUUID());
+        i.setId(3);
         i.setCost(1488);
         i.setName("name");
         i.setVolume("vol");
