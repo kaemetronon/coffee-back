@@ -19,7 +19,7 @@ public class AdminItemController {
         return itemService.getAllItems();
     }
 
-    @GetMapping("/byShfop")
+    @GetMapping("/byShop")
     public List<Item> getItemByShopId(@RequestParam Integer shopId) {
         return itemService.getItemsByShop(shopId);
     }

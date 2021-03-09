@@ -36,6 +36,18 @@
             <scope>runtime</scope>
         </dependency>
 
+<!--        &lt;!&ndash;        SECURITY&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
+        <!-- JSON Web Token lib -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
         <!--        LOMBOK-->
         <dependency>
             <groupId>org.projectlombok</groupId>
