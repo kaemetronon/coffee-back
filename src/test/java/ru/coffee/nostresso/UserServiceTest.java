@@ -20,7 +20,7 @@ public class UserServiceTest {
     @Autowired
     private IUserService userService;
 
-    private Integer userId =2;
+    private Long userId =2L;
 
     @Test
     public void findAllShops() {
@@ -57,7 +57,7 @@ public class UserServiceTest {
 
     private User createItem() {
         var i = new User();
-        i.setId(8);
+        i.setId(8L);
         i.setName("name");
         return i;
     }

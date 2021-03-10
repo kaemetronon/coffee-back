@@ -17,9 +17,9 @@ public class ReviewServiceTest {
     @Autowired
     private IReviewService reviewService;
 
-    private Integer reviewId = 1;
-    private Integer shopId = 2;
-    private Integer userid = 3;
+    private Long reviewId = 1L;
+    private Long shopId = 2L;
+    private Long userid = 3L;
 
     @Test
     public void getAllReviews() {
@@ -67,9 +67,9 @@ public class ReviewServiceTest {
 
     private Review createReview() {
         var i = new Review();
-        i.setId(2);
+        i.setId(2L);
         i.setDescription("desccc");
-        i.setRate(55);
+        i.setRate(55L);
         i.setShopId(shopId);
         i.setUserId(userid);
         return i;

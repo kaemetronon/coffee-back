@@ -19,8 +19,8 @@ public class ItemServiceTest {
     @Autowired
     private IItemService itemService;
 
-    private Integer itemId = 1;
-    private Integer shopId = 2;
+    private Long itemId = 1L;
+    private Long shopId = 2L;
 
     @Test
     public void getAllItems() {
@@ -62,8 +62,8 @@ public class ItemServiceTest {
 
     private Item createItem() {
         var i = new Item();
-        i.setId(3);
-        i.setCost(1488);
+        i.setId(3L);
+        i.setCost(1488L);
         i.setName("name");
         i.setVolume("vol");
         i.setShopId(shopId);

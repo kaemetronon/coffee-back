@@ -21,7 +21,7 @@ public class ShopServiceTest {
     @Autowired
     private ShopServiceImpl shopService;
 
-    private Integer shopId = 2;
+    private Long shopId = 2L;
 
     @Test
     public void findAllShops() {
@@ -50,7 +50,7 @@ public class ShopServiceTest {
     @Test
     @Transactional(timeout = 7200)
     public void updateMiddleRate() {
-        shopService.updateShopMiddleRate(shopId, Arrays.asList(1, 2, 3, 4));
+        shopService.updateShopMiddleRate(shopId, Arrays.asList(1L, 2L, 3L, 4L));
         shopService.findAll().stream().filter(o -> o.getId().equals(shopId))
                 .findFirst().ifPresent(o -> assertEquals(Double.valueOf(2.5), o.getMiddleRate()));
     }
@@ -66,7 +66,7 @@ public class ShopServiceTest {
 
     private Shop createItem() {
         var i = new Shop();
-        i.setId(4);
+        i.setId(4L);
         i.setName("name");
         i.setDescription("dscr");
         i.setPhone("+7911");
