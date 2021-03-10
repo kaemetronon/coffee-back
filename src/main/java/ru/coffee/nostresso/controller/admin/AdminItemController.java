@@ -14,16 +14,6 @@ public class AdminItemController {
 
     private final IItemService itemService;
 
-    @GetMapping
-    public List<Item> getAllItems() {
-        return itemService.getAllItems();
-    }
-
-    @GetMapping("/byShop")
-    public List<Item> getItemByShopId(@RequestParam Long shopId) {
-        return itemService.getItemsByShop(shopId);
-    }
-
     @PostMapping
     public Long addItem(@RequestBody Item item) {
         return itemService.addItem(item);

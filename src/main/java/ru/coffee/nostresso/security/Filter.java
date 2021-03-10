@@ -9,14 +9,11 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
 public class Filter extends GenericFilterBean {
-
-    private final ValidateRequest validator;
 
     @Value("${vk.secret}")
     private String clientSecret;

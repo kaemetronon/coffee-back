@@ -1,4 +1,4 @@
-package ru.coffee.nostresso.controller;
+package ru.coffee.nostresso.controller.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

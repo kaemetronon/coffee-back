@@ -1,6 +1,6 @@
-package ru.coffee.nostresso.controller.admin;
+package ru.coffee.nostresso.controller.common;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.Review;
 import ru.coffee.nostresso.service.review.IReviewService;
@@ -8,16 +8,11 @@ import ru.coffee.nostresso.service.review.IReviewService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/review")
-@AllArgsConstructor
-public class AdminReviewController {
+@RequestMapping("/review")
+@RequiredArgsConstructor
+public class ReviewController {
 
     private final IReviewService reviewService;
-
-    @GetMapping
-    public List<Review> getAllReviews() {
-        return reviewService.findAll();
-    }
 
     @GetMapping("/byShop")
     public List<Review> getReviewsByShop(@RequestParam Long shopId) {

@@ -6,19 +6,12 @@ import ru.coffee.nostresso.model.entity.Address;
 import ru.coffee.nostresso.model.entity.Shop;
 import ru.coffee.nostresso.service.shop.IShopService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/admin/shop")
 @AllArgsConstructor
 public class AdminShopController {
 
     private final IShopService shopService;
-
-    @GetMapping
-    public List<Shop> getAllCoffeeShops() {
-        return shopService.findAll();
-    }
 
     @PostMapping
     public Long addCoffeeShop(@RequestBody Shop shop) {
