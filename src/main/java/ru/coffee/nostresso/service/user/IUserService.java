@@ -7,9 +7,9 @@ import java.util.List;
 public interface IUserService {
     List<User> findAll();
 
-    Integer addUser(User user);
+    Long addUser(User user);
 
     void updateUser(User user);
 
-    void deleteById(Integer userId);
+    void deleteById(Long userId);
 }

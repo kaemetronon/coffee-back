@@ -33,7 +33,7 @@ public class ValidateRequest {
                 .map(entry -> encode(entry.getKey()) + "=" + encode(entry.getValue()))
                 .collect(Collectors.joining("&"));
 
-        String sign = null;
+        String sign;
         try {
             sign = getHashCode(checkString, clientSecret);
         } catch (Exception e) {

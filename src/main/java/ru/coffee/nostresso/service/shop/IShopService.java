@@ -8,17 +8,17 @@ import java.util.List;
 public interface IShopService {
     List<Shop> findAll();
 
-    Integer addShop(Shop shop);
+    Long addShop(Shop shop);
 
     void updateShop(Shop shop);
 
-    void deleteById(Integer shopId);
+    void deleteById(Long shopId);
 
-    Address getAddress(Integer shopId);
+    Address getAddress(Long shopId);
 
-    void addNewAddress(Integer shopId, Address address);
+    void addNewAddress(Long shopId, Address address);
 
     void updateAddress(Address address);
 
-    void deleteAddress(Integer shopId);
+    void deleteAddress(Long shopId);
 }

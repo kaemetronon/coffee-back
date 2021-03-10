@@ -11,11 +11,11 @@ import java.util.List;
 public interface ShopMapper {
     List<Shop> findAll();
 
-    void addShop(Integer id, Shop shop);
+    void addShop(Long id, Shop shop);
 
     void updateShop(Shop shop);
 
-    void updateShopMiddleRate(Integer shopId, Double rate);
+    void updateShopMiddleRate(Long shopId, Double rate);
 
-    void deleteById(Integer coffeeShopId);
+    void deleteById(Long coffeeShopId);
 }

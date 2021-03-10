@@ -3,9 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.coffee.nostresso.model.mapper.AddressMapper">
+<resultMap id="AddressRM" type="ru.coffee.nostresso.model.entity.Address">
+    <id column="id"/>
+    <result property="id" column="id"/>
+    <result property="shopId" column="shop_id"/>
+    <result property="addressText" column="address_text"/>
+    <result property="x" column="x"/>
+    <result property="y" column="y"/>
+    <result property="dateUpdated" column="date_updated"/>
+</resultMap>
 
-    <select id="getByShopId" resultType="ru.coffee.nostresso.model.entity.Address">
-
+    <select id="getByShopId" resultMap="AddressRM">
+        select id, shop_id, address_text, x, y, date_updated from address where shop_id = #{shopId}
     </select>
 
     <update id="updateAddress">

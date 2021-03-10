@@ -20,7 +20,7 @@ public class AdminUserController {
     }
 
     @PostMapping("/")
-    public Integer addUser(@RequestBody User user) {
+    public Long addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
@@ -31,7 +31,7 @@ public class AdminUserController {
     }
 
     @DeleteMapping("/")
-    public String deleteUser(@RequestParam Integer userId) {
+    public String deleteUser(@RequestParam Long userId) {
         userService.deleteById(userId);
         return "user " + userId + " deleted";
     }

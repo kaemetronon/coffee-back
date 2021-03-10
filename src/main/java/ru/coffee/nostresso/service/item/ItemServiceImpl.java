@@ -22,13 +22,13 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public List<Item> getItemsByShop(Integer shopId) {
+    public List<Item> getItemsByShop(Long shopId) {
         return itemMapper.getItemsByShop(shopId);
     }
 
     @Override
-    public Integer addItem(Item item) {
-        var id = new Random().nextInt(1_000_000);
+    public Long addItem(Item item) {
+        var id = new Random().nextLong();
         itemMapper.addItem(id, item);
         return id;
     }
@@ -39,7 +39,7 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public void deleteItem(Integer itemId) {
+    public void deleteItem(Long itemId) {
         itemMapper.deleteItem(itemId);
     }
 }

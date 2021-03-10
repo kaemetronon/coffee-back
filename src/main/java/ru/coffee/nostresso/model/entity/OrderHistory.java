@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderHistory {
-    private Integer id;
-    private Integer userId;
+    private Long id;
+    private Long userId;
     private LocalDateTime dateCreated;
 }

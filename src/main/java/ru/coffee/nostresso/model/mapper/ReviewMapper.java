@@ -12,15 +12,15 @@ public interface ReviewMapper {
 
     List<Review> findAll();
 
-    List<Review> findByShop(Integer shopId);
+    List<Review> findByShop(Long shopId);
 
-    List<Review> findByUser(Integer userId);
+    List<Review> findByUser(Long userId);
 
-    List<Integer> getRatesByShop(Integer shopId);
+    List<Long> getRatesByShop(Long shopId);
 
-    void addReview(Integer id, Review item);
+    void addReview(Long id, Review item);
 
     void updateReview(Review item);
 
-    void deleteById(Integer itemId);
+    void deleteById(Long itemId);
 }

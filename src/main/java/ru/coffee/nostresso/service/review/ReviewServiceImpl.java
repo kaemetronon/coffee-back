@@ -24,33 +24,32 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public List<Review> findByShop(Integer shopId) {
+    public List<Review> findByShop(Long shopId) {
         return reviewMapper.findByShop(shopId);
     }
 
     @Override
-    public List<Review> findByUser(Integer userId) {
+    public List<Review> findByUser(Long userId) {
         return reviewMapper.findByUser(userId);
     }
 
     @Override
-    public Integer addReview(Integer shopId, Review item) {
-        var id = new Random().nextInt(1_000_000);
+    public Long addReview(Long shopId, Review item) {
+        var id = new Random().nextLong();
         reviewMapper.addReview(id, item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
         return id;
     }
 
     @Override
-    public void updateReview(Integer shopId, Review item) {
+    public void updateReview(Long shopId, Review item) {
         reviewMapper.updateReview(item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }
 
     @Override
-    public void deleteById(Integer shopId, Integer id) {
+    public void deleteById(Long shopId, Long id) {
         reviewMapper.deleteById(id);
-
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }
 }

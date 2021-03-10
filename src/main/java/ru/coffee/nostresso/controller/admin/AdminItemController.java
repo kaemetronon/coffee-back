@@ -20,12 +20,12 @@ public class AdminItemController {
     }
 
     @GetMapping("/byShop")
-    public List<Item> getItemByShopId(@RequestParam Integer shopId) {
+    public List<Item> getItemByShopId(@RequestParam Long shopId) {
         return itemService.getItemsByShop(shopId);
     }
 
     @PostMapping
-    public Integer addItem(@RequestBody Item item) {
+    public Long addItem(@RequestBody Item item) {
         return itemService.addItem(item);
     }
 
@@ -36,7 +36,7 @@ public class AdminItemController {
     }
 
     @DeleteMapping
-    public String deleteItem(@RequestParam Integer itemId) {
+    public String deleteItem(@RequestParam Long itemId) {
         itemService.deleteItem(itemId);
         return "item " + itemId + " deleted";
     }

@@ -8,9 +8,9 @@ import ru.coffee.nostresso.model.entity.Address;
 @Mapper
 public interface AddressMapper {
 
-    Address getByShopId(Integer shopId);
+    Address getByShopId(Long shopId);
 
     void updateAddress(Address a);
 
-    void deleteByShopId(Integer shopId);
+    void deleteByShopId(Long shopId);
 }

@@ -11,11 +11,11 @@ import java.util.List;
 public interface ItemMapper {
     List<Item> getAllItems();
 
-    List<Item> getItemsByShop(Integer shopId);
+    List<Item> getItemsByShop(Long shopId);
 
-    void addItem(Integer id, Item item);
+    void addItem(Long id, Item item);
 
     void updateItem(Item item);
 
-    void deleteItem(Integer id);
+    void deleteItem(Long id);
 }

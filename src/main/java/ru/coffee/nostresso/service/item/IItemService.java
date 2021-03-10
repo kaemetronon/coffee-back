@@ -8,11 +8,11 @@ public interface IItemService {
 
     List<Item> getAllItems();
 
-    List<Item> getItemsByShop(Integer shopId);
+    List<Item> getItemsByShop(Long shopId);
 
-    Integer addItem(Item item);
+    Long addItem(Item item);
 
     void updateItem(Item item);
 
-    void deleteItem(Integer itemId);
+    void deleteItem(Long itemId);
 }

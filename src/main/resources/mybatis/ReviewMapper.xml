@@ -21,7 +21,7 @@
         where user_id = #{userId}
           and is_deleted = false
     </select>
-    <select id="getRatesByShop" resultType="java.lang.Integer">
+    <select id="getRatesByShop" resultType="java.lang.Long">
         select rate
         from reviews
         where shop_id = #{shopId}

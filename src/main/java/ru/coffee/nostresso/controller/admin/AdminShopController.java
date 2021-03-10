@@ -21,7 +21,7 @@ public class AdminShopController {
     }
 
     @PostMapping
-    public Integer addCoffeeShop(@RequestBody Shop shop) {
+    public Long addCoffeeShop(@RequestBody Shop shop) {
         return shopService.addShop(shop);
     }
 
@@ -32,14 +32,14 @@ public class AdminShopController {
     }
 
     @PutMapping("/edit_addr")
-    public String setNewAddressForShop(@RequestParam Integer shopId, @RequestBody Address address) {
+    public String setNewAddressForShop(@RequestParam Long shopId, @RequestBody Address address) {
         address.setShopId(shopId);
         shopService.updateAddress(address);
         return "Address updated";
     }
 
     @DeleteMapping
-    public String deleteCoffeeShop(@RequestParam Integer shopId) {
+    public String deleteCoffeeShop(@RequestParam Long shopId) {
         shopService.deleteById(shopId);
         return "CoffeeShop " + shopId + " deleted";
     }

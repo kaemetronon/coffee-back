@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
-    private Integer id;
+    private Long id;
     private String addressText;
     private LocalDateTime dateUpdated;
     private Double x;
     private Double y;
-    private Integer shopId;
+    private Long shopId;
 }

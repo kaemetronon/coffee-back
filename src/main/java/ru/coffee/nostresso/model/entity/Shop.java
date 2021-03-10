@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Shop {
-    private Integer id;
+    private Long id;
     private String name;
     private String description;
     private String phone;

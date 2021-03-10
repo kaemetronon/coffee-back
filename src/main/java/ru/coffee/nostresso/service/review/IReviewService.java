@@ -8,13 +8,13 @@ public interface IReviewService {
 
     List<Review> findAll();
 
-    List<Review> findByShop(Integer userId);
+    List<Review> findByShop(Long userId);
 
-    List<Review> findByUser(Integer userId);
+    List<Review> findByUser(Long userId);
 
-    Integer addReview(Integer shopId, Review item);
+    Long addReview(Long shopId, Review item);
 
-    void updateReview(Integer shopId, Review item);
+    void updateReview(Long shopId, Review item);
 
-    void deleteById(Integer shopId, Integer itemId);
+    void deleteById(Long shopId, Long itemId);
 }

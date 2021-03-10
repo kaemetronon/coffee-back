@@ -24,6 +24,6 @@ public class Filter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        var x = ValidateRequest.doValidate(servletRequest.getParameterMap(), clientSecret);
+        System.out.println(ValidateRequest.doValidate(servletRequest.getParameterMap(), clientSecret));
     }
 }

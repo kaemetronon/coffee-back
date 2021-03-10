@@ -22,8 +22,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Integer addUser(User user) {
-        var id = new Random().nextInt(1_000_000);
+    public Long addUser(User user) {
+        var id = new Random().nextLong();
         userMapper.addUser(id, user);
         return id;
     }
@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void deleteById(Integer userId) {
+    public void deleteById(Long userId) {
         userMapper.deleteById(userId);
     }
 }

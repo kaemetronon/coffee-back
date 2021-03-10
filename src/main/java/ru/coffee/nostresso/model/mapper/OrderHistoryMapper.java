@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 @Mapper
 public interface OrderHistoryMapper {
-    Optional<OrderHistory> findByUserId(Integer userId);
+    Optional<OrderHistory> findByUserId(Long userId);
 }

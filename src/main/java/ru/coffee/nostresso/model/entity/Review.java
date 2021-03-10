@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {
-    private Integer id;
+    private Long id;
     private String description;
-    private Integer rate;
+    private Long rate;
     private LocalDateTime dateUpdated;
-    private Integer shopId;
-    private Integer userId;
+    private Long shopId;
+    private Long userId;
 }

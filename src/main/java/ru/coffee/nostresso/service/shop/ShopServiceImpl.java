@@ -26,8 +26,8 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public Integer addShop(Shop shop) {
-        var id = new Random().nextInt(1_000_000);
+    public Long addShop(Shop shop) {
+        var id = new Random().nextLong();
         shopMapper.addShop(id, shop);
         return id;
     }
@@ -37,25 +37,25 @@ public class ShopServiceImpl implements IShopService {
         shopMapper.updateShop(shop);
     }
 
-    public void updateShopMiddleRate(Integer shopId, List<Integer> rates) {
-        OptionalDouble rate = rates.stream().mapToInt(i -> i).average();
+    public void updateShopMiddleRate(Long shopId, List<Long> rates) {
+        OptionalDouble rate = rates.stream().mapToLong(i -> i).average();
         if (rate.isPresent())
             shopMapper.updateShopMiddleRate(shopId, rate.getAsDouble());
     }
 
     @Override
-    public void deleteById(Integer coffeeShopId) {
+    public void deleteById(Long coffeeShopId) {
         shopMapper.deleteById(coffeeShopId);
     }
 
     @Override
-    public Address getAddress(Integer shopId) {
+    public Address getAddress(Long shopId) {
 //        non used
         return null;
     }
 
     @Override
-    public void addNewAddress(Integer shopId, Address address) {
+    public void addNewAddress(Long shopId, Address address) {
         //        non used
     }
 
@@ -65,7 +65,7 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public void deleteAddress(Integer shopId) {
+    public void deleteAddress(Long shopId) {
 //        non used
     }
 }

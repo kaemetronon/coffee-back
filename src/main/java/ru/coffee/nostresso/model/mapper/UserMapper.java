@@ -11,9 +11,9 @@ import java.util.List;
 public interface UserMapper {
     List<User> findAll();
 
-    void addUser(Integer id, User user);
+    void addUser(Long id, User user);
 
     void updateUser(User user);
 
-    void deleteById(Integer userId);
+    void deleteById(Long userId);
 }
