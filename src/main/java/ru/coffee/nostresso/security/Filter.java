@@ -24,6 +24,9 @@ public class Filter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        System.out.println(ValidateRequest.doValidate(servletRequest.getParameterMap(), clientSecret));
+//        if (ValidateRequest.doValidate(servletRequest.getParameterMap(), clientSecret))
+            filterChain.doFilter(servletRequest, servletResponse);
+//        else
+//            throw new RuntimeException("Invalid params");
     }
 }
