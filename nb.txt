@@ -10,3 +10,12 @@ public class ServletInitializer extends SpringBootServletInitializer {
         return application.sources(Dds01ServerApplication.class);
     }
 }
+
+сборка
+в проекте обязательно должны быть
+.mvn
+mvnw / mvnw.cmd --depends on OS
+
+mvnw clean
+mvnw compile (not necessary)
+mvnw spring-boot:run

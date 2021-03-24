@@ -21,5 +21,4 @@ public class ItemController {
     public List<Item> getItemByShopId(@RequestParam Long shopId) {
         return itemService.getItemsByShop(shopId);
     }
-
 }
