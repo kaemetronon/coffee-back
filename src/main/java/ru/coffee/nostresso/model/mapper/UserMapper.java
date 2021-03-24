@@ -11,6 +11,8 @@ import java.util.List;
 public interface UserMapper {
     List<User> findAll();
 
+    User findByName(String name);
+
     void addUser(Long id, User user);
 
     void updateUser(User user);

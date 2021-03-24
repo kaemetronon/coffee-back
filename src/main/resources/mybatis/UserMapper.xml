@@ -9,6 +9,12 @@
         from users
         where is_deleted = false
     </select>
+    <select id="findByName" resultType="ru.coffee.nostresso.model.entity.User">
+        select id, name, date_updated as dateUpdated
+        from users
+        where name = #{name}
+          and is_deleted = false
+    </select>
 
     <insert id="addUser">
         insert into users (id, name, date_updated)
