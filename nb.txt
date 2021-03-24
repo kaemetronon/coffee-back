@@ -14,8 +14,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 сборка
 в проекте обязательно должны быть
 .mvn
-mvnw / mvnw.cmd --depends on OS
+mvnw / mvnw.cmd
 
 mvnw clean
-mvnw compile (not necessary)
 mvnw spring-boot:run
