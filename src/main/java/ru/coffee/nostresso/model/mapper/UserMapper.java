@@ -2,6 +2,7 @@ package ru.coffee.nostresso.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import ru.coffee.nostresso.model.Role;
 import ru.coffee.nostresso.model.entity.User;
 
 import java.util.List;
@@ -11,11 +12,9 @@ import java.util.List;
 public interface UserMapper {
     List<User> findAll();
 
-    User findByName(String name);
+    User findById(Long id);
 
-    void addUser(Long id, User user);
-
-    void updateUser(User user);
+    void addUser(Long id, Role role);
 
     void deleteById(Long userId);
 }

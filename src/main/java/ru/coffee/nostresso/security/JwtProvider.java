@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +20,7 @@ import ru.coffee.nostresso.service.user.UserServiceImpl;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class JwtProvider {
     private long validityInMilliseconds;
 
     @Autowired
-    private UserServiceImpl userService;
+    private IUserService userService;
 
     @PostConstruct
     protected void init() {
@@ -46,10 +48,10 @@ public class JwtProvider {
         return bCryptPasswordEncoder;
     }
 
-    public String createToken(String username, Role role) {
+    public String createToken(String username, Collection<? extends GrantedAuthority> authority) {
 
         Claims claims = Jwts.claims().setSubject(username);
-        claims.put("role", role.name());
+        claims.put("role", authority..name());
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);

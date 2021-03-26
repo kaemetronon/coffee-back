@@ -5,29 +5,23 @@
 <mapper namespace="ru.coffee.nostresso.model.mapper.UserMapper">
 
     <select id="findAll" resultType="ru.coffee.nostresso.model.entity.User">
-        select id, name, date_updated as dateUpdated
+        select id, date_updated as dateUpdated
         from users
         where is_deleted = false
     </select>
-    <select id="findByName" resultType="ru.coffee.nostresso.model.entity.User">
-        select id, name, date_updated as dateUpdated
+    <select id="findById" resultType="ru.coffee.nostresso.model.entity.User">
+        select id, date_updated as dateUpdated
         from users
-        where name = #{name}
+        where id = #{id}
           and is_deleted = false
     </select>
 
     <insert id="addUser">
-        insert into users (id, name, date_updated)
+        insert into users (id, date_updated, role)
         values (#{id},
-                #{user.name},
-                now())
+                now(),
+                #{role.name})
     </insert>
-    <update id="updateUser">
-        update users
-        set name         = #{name},
-            date_updated = now()
-        where id = #{id}
-    </update>
     <update id="deleteById">
         update users
         set is_deleted   = true,

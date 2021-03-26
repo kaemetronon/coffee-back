@@ -6,12 +6,15 @@ import ru.coffee.nostresso.model.entity.User;
 
 import java.util.List;
 
-public interface IUserService {
+public interface IUserService extends UserDetailsService{
     List<User> findAll();
 
-    Long addUser(User user);
+    Long addUser(Long id);
 
-    void updateUser(User user);
+    Long addAdmin(Long id);
+
 
     void deleteById(Long userId);
+
+    UserDetails loadUserByUsername(String s);
 }
