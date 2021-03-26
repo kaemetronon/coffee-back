@@ -1,8 +1,4 @@
 .idea
-.mvn
 target/
 no-stresso.iml
-mvnw
-mvnw.cmd
-
 
