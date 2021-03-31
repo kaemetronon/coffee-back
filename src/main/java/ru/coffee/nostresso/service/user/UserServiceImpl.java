@@ -7,7 +7,7 @@ import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.model.mapper.UserMapper;
 
 import java.util.List;
-import java.util.Random;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -22,8 +22,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Long addUser(User user) {
-        var id = new Random().nextLong();
+    public UUID addUser(User user) {
+        var id = UUID.randomUUID();
         userMapper.addUser(id, user);
         return id;
     }
@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void deleteById(Long userId) {
+    public void deleteById(UUID userId) {
         userMapper.deleteById(userId);
     }
 }

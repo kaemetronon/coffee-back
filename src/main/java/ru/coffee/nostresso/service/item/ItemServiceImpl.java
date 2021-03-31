@@ -8,6 +8,7 @@ import ru.coffee.nostresso.model.mapper.ItemMapper;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -22,13 +23,13 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public List<Item> getItemsByShop(Long shopId) {
+    public List<Item> getItemsByShop(UUID shopId) {
         return itemMapper.getItemsByShop(shopId);
     }
 
     @Override
-    public Long addItem(Item item) {
-        var id = new Random().nextLong();
+    public UUID addItem(Item item) {
+        var id = UUID.randomUUID();
         itemMapper.addItem(id, item);
         return id;
     }
@@ -39,7 +40,7 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public void deleteItem(Long itemId) {
+    public void deleteItem(UUID itemId) {
         itemMapper.deleteItem(itemId);
     }
 }

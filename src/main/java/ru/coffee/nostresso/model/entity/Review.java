@@ -5,15 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {
-    private Long id;
+    private UUID id;
     private String description;
     private Long rate;
     private LocalDateTime dateUpdated;
-    private Long shopId;
-    private Long userId;
+    private UUID shopId;
+    private UUID userId;
 }

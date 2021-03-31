@@ -9,6 +9,7 @@ import ru.coffee.nostresso.service.shop.ShopServiceImpl;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -24,31 +25,31 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public List<Review> findByShop(Long shopId) {
+    public List<Review> findByShop(UUID shopId) {
         return reviewMapper.findByShop(shopId);
     }
 
     @Override
-    public List<Review> findByUser(Long userId) {
+    public List<Review> findByUser(UUID userId) {
         return reviewMapper.findByUser(userId);
     }
 
     @Override
-    public Long addReview(Long shopId, Review item) {
-        var id = new Random().nextLong();
+    public UUID addReview(UUID shopId, Review item) {
+        var id = UUID.randomUUID();
         reviewMapper.addReview(id, item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
         return id;
     }
 
     @Override
-    public void updateReview(Long shopId, Review item) {
+    public void updateReview(UUID shopId, Review item) {
         reviewMapper.updateReview(item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }
 
     @Override
-    public void deleteById(Long shopId, Long id) {
+    public void deleteById(UUID shopId, UUID id) {
         reviewMapper.deleteById(id);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }

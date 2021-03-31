@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.service.item.IItemService;
 
-import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/admin/item")
@@ -15,7 +15,7 @@ public class AdminItemController {
     private final IItemService itemService;
 
     @PostMapping
-    public Long addItem(@RequestBody Item item) {
+    public UUID addItem(@RequestBody Item item) {
         return itemService.addItem(item);
     }
 
@@ -26,7 +26,7 @@ public class AdminItemController {
     }
 
     @DeleteMapping
-    public String deleteItem(@RequestParam Long itemId) {
+    public String deleteItem(@RequestParam UUID itemId) {
         itemService.deleteItem(itemId);
         return "item " + itemId + " deleted";
     }

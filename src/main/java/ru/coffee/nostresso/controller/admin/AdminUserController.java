@@ -6,6 +6,7 @@ import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.service.user.IUserService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/admin/user")
@@ -20,7 +21,7 @@ public class AdminUserController {
     }
 
     @PostMapping("/")
-    public Long addUser(@RequestBody User user) {
+    public UUID addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
@@ -31,7 +32,7 @@ public class AdminUserController {
     }
 
     @DeleteMapping("/")
-    public String deleteUser(@RequestParam Long userId) {
+    public String deleteUser(@RequestParam UUID userId) {
         userService.deleteById(userId);
         return "user " + userId + " deleted";
     }

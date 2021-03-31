@@ -5,15 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
-    private Long id;
+    private UUID id;
     private String addressText;
     private LocalDateTime dateUpdated;
     private Double x;
     private Double y;
-    private Long shopId;
+    private UUID shopId;
 }

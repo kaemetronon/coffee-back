@@ -9,6 +9,7 @@ import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.service.item.IItemService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/item")
@@ -18,7 +19,7 @@ public class ItemController {
     private final IItemService itemService;
 
     @GetMapping("/byShop")
-    public List<Item> getItemByShopId(@RequestParam Long shopId) {
+    public List<Item> getItemByShopId(@RequestParam UUID shopId) {
         return itemService.getItemsByShop(shopId);
     }
 }

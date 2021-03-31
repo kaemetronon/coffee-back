@@ -3,13 +3,14 @@ package ru.coffee.nostresso.service.user;
 import ru.coffee.nostresso.model.entity.User;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface IUserService {
     List<User> findAll();
 
-    Long addUser(User user);
+    UUID addUser(User user);
 
     void updateUser(User user);
 
-    void deleteById(Long userId);
+    void deleteById(UUID userId);
 }

@@ -11,17 +11,17 @@
     <select id="getItemsByShop" resultType="ru.coffee.nostresso.model.entity.Item">
         select id, name, volume, cost, date_updated as dateUpdated, shop_id as shopId
         from items
-        where shop_id = #{shopId}
+               where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
           and is_deleted = false
     </select>
 
     <insert id="addItem">
         insert into items (id, name, volume, cost, shop_id)
-        values (#{id},
+        values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
                 #{item.name},
                 #{item.volume},
                 #{item.cost},
-                #{item.shopId})
+                #{item.shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler})
     </insert>
 
     <update id="updateItem">
@@ -31,12 +31,12 @@
             cost         = #{cost},
             shop_id      = #{shopId},
             date_updated = now()
-        where id = #{id}
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
     <update id="deleteItem">
         update items
         set is_deleted= true,
             date_updated = now()
-        where id = #{id}
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
 </mapper>
