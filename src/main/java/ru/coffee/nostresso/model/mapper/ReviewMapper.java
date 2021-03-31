@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.coffee.nostresso.model.entity.Review;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 @Mapper
@@ -12,15 +13,15 @@ public interface ReviewMapper {
 
     List<Review> findAll();
 
-    List<Review> findByShop(Long shopId);
+    List<Review> findByShop(UUID shopId);
 
-    List<Review> findByUser(Long userId);
+    List<Review> findByUser(UUID userId);
 
-    List<Long> getRatesByShop(Long shopId);
+    List<Long> getRatesByShop(UUID shopId);
 
-    void addReview(Long id, Review item);
+    void addReview(UUID id, Review item);
 
     void updateReview(Review item);
 
-    void deleteById(Long itemId);
+    void deleteById(UUID itemId);
 }

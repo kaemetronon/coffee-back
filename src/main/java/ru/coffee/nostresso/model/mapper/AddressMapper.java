@@ -4,13 +4,15 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import ru.coffee.nostresso.model.entity.Address;
 
+import java.util.UUID;
+
 @Repository
 @Mapper
 public interface AddressMapper {
 
-    Address getByShopId(Long shopId);
+    Address getByShopId(UUID shopId);
 
     void updateAddress(Address a);
 
-    void deleteByShopId(Long shopId);
+    void deleteByShopId(UUID shopId);
 }

@@ -2,19 +2,19 @@ package ru.coffee.nostresso.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-import ru.coffee.nostresso.model.Role;
 import ru.coffee.nostresso.model.entity.User;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 @Mapper
 public interface UserMapper {
     List<User> findAll();
 
-    User findById(Long id);
+    void addUser(UUID id, User user);
 
-    void addUser(Long id, Role role);
+    void updateUser(User user);
 
-    void deleteById(Long userId);
+    void deleteById(UUID userId);
 }

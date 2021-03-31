@@ -2,14 +2,12 @@ package ru.coffee.nostresso.service.user;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.coffee.nostresso.model.Role;
 import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.model.mapper.UserMapper;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -24,24 +22,19 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Long addUser(Long id) {
-        userMapper.addUser(id, Role.USER);
+    public UUID addUser(User user) {
+        var id = UUID.randomUUID();
+        userMapper.addUser(id, user);
         return id;
     }
 
     @Override
-    public Long addAdmin(Long id) {
-        userMapper.addUser(id, Role.ADMIN);
-        return id;
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
     }
 
     @Override
-    public void deleteById(Long userId) {
+    public void deleteById(UUID userId) {
         userMapper.deleteById(userId);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userMapper.findById(Long.parseLong(s));
     }
 }

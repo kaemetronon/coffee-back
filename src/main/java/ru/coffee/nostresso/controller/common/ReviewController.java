@@ -6,6 +6,7 @@ import ru.coffee.nostresso.model.entity.Review;
 import ru.coffee.nostresso.service.review.IReviewService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/review")
@@ -15,28 +16,28 @@ public class ReviewController {
     private final IReviewService reviewService;
 
     @GetMapping("/byShop")
-    public List<Review> getReviewsByShop(@RequestParam Long shopId) {
+    public List<Review> getReviewsByShop(@RequestParam UUID shopId) {
         return reviewService.findByShop(shopId);
     }
 
     @GetMapping("/byUser")
-    public List<Review> getReviewsByUser(@RequestParam Long userId) {
+    public List<Review> getReviewsByUser(@RequestParam UUID userId) {
         return reviewService.findByUser(userId);
     }
 
     @PostMapping
-    public Long addReview(@RequestParam Long shopId, @RequestBody Review review) {
+    public UUID addReview(@RequestParam UUID shopId, @RequestBody Review review) {
         return reviewService.addReview(shopId, review);
     }
 
     @PutMapping
-    public String updateReivew(@RequestParam Long shopId, @RequestBody Review review) {
+    public String updateReivew(@RequestParam UUID shopId, @RequestBody Review review) {
         reviewService.updateReview(shopId, review);
         return "review updated";
     }
 
     @DeleteMapping
-    public String deleteReview(@RequestParam Long shopId, @RequestParam Long reviewId) {
+    public String deleteReview(@RequestParam UUID shopId, @RequestParam UUID reviewId) {
         reviewService.deleteById(shopId, reviewId);
         return "review  " + reviewId + " deleted";
     }

@@ -3,18 +3,19 @@ package ru.coffee.nostresso.service.review;
 import ru.coffee.nostresso.model.entity.Review;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface IReviewService {
 
     List<Review> findAll();
 
-    List<Review> findByShop(Long userId);
+    List<Review> findByShop(UUID userId);
 
-    List<Review> findByUser(Long userId);
+    List<Review> findByUser(UUID userId);
 
-    Long addReview(Long shopId, Review item);
+    UUID addReview(UUID shopId, Review item);
 
-    void updateReview(Long shopId, Review item);
+    void updateReview(UUID shopId, Review item);
 
-    void deleteById(Long shopId, Long itemId);
+    void deleteById(UUID shopId, UUID itemId);
 }

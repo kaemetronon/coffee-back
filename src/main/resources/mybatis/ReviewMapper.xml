@@ -12,29 +12,29 @@
     <select id="findByShop" resultType="ru.coffee.nostresso.model.entity.Review">
         select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
         from reviews
-        where shop_id = #{shopId}
+        where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
           and is_deleted = false
     </select>
     <select id="findByUser" resultType="ru.coffee.nostresso.model.entity.Review">
         select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
         from reviews
-        where user_id = #{userId}
+        where user_id = #{userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
           and is_deleted = false
     </select>
     <select id="getRatesByShop" resultType="java.lang.Long">
         select rate
         from reviews
-        where shop_id = #{shopId}
+        where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
           and is_deleted = false
     </select>
 
     <insert id="addReview">
         insert into reviews (id, description, rate, shop_id, user_id)
-        values (#{id},
+        values (#{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
                 #{item.description},
                 #{item.rate},
-                #{item.shopId},
-                #{item.userId})
+                #{item.shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+                #{item.userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler})
     </insert>
     <update id="updateReview">
         update reviews
@@ -43,12 +43,12 @@
             shop_id      = #{shopId},
             user_id      = #{userId},
             date_updated = now()
-        where id = #{id}
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
     <update id="deleteById">
         update reviews
         set is_deleted = true,
             date_updated = now()
-        where id = #{id}
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
 </mapper>
