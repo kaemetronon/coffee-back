@@ -37,8 +37,8 @@ public class ReviewController {
     }
 
     @DeleteMapping
-    public String deleteReview(@RequestParam UUID shopId, @RequestParam UUID reviewId) {
-        reviewService.deleteById(shopId, reviewId);
+    public String deleteReview(@RequestParam UUID reviewId) {
+        reviewService.deleteById(reviewId);
         return "review  " + reviewId + " deleted";
     }
 }

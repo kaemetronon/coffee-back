@@ -13,7 +13,7 @@
         <result property="dateUpdated" column="date_updated"/>
     </resultMap>
 
-    <select id="getByShopId" resultMap="AddressRM">
+    <select id="getAddressByShopId" resultMap="AddressRM">
         select id, shop_id, address_text, x, y, date_updated
         from address
         where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
@@ -31,7 +31,7 @@
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
 
-    <delete id="deleteByShopId">
+    <delete id="deleteAddressByShopId">
         update address
         set is_deleted= true,
             date_updated = now()

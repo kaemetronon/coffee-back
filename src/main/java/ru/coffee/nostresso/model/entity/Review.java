@@ -12,9 +12,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Review {
     private UUID id;
+    private UUID shopId;
+    private UUID userId;
     private String description;
     private Long rate;
     private LocalDateTime dateUpdated;
-    private UUID shopId;
-    private UUID userId;
 }

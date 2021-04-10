@@ -22,7 +22,7 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public List<Shop> findAll() {
-        return shopMapper.findAll();
+        return shopMapper.findAllShops();
     }
 
     @Override
@@ -34,6 +34,7 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public void updateShop(Shop shop) {
+        // TODO check if not exists
         shopMapper.updateShop(shop);
     }
 
@@ -45,7 +46,7 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public void deleteById(UUID coffeeShopId) {
-        shopMapper.deleteById(coffeeShopId);
+        shopMapper.deleteShopById(coffeeShopId);
     }
 
     @Override

@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 @Mapper
 public interface OrderHistoryMapper {
-    Optional<OrderHistory> findByUserId(UUID userId);
+    OrderHistory findHistoriesByUserId(UUID userId);
 }

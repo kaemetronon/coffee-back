@@ -1,6 +1,6 @@
 package ru.coffee.nostresso.controller.admin;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.Address;
 import ru.coffee.nostresso.model.entity.Shop;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/admin/shop")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AdminShopController {
 
     private final IShopService shopService;

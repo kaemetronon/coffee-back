@@ -10,7 +10,7 @@ import java.util.UUID;
 @Repository
 @Mapper
 public interface UserMapper {
-    List<User> findAll();
+    List<User> findAllUsers();
 
     void addUser(UUID id, User user);
 

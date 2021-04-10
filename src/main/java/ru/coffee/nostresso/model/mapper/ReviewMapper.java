@@ -11,11 +11,13 @@ import java.util.UUID;
 @Mapper
 public interface ReviewMapper {
 
-    List<Review> findAll();
+    Review findReviewById(UUID reviewId);
 
-    List<Review> findByShop(UUID shopId);
+    List<Review> findAllReviews();
 
-    List<Review> findByUser(UUID userId);
+    List<Review> findReviewByShop(UUID shopId);
+
+    List<Review> findReviewByUser(UUID userId);
 
     List<Long> getRatesByShop(UUID shopId);
 

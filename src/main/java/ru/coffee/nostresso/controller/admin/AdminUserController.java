@@ -1,6 +1,6 @@
 package ru.coffee.nostresso.controller.admin;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.User;
 import ru.coffee.nostresso.service.user.IUserService;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/admin/user")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AdminUserController {
 
     private final IUserService userService;

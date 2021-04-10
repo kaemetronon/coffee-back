@@ -7,7 +7,6 @@ import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.model.mapper.ItemMapper;
 
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -36,11 +35,13 @@ public class ItemServiceImpl implements IItemService {
 
     @Override
     public void updateItem(Item item) {
+        // TODO check if not exists
         itemMapper.updateItem(item);
     }
 
     @Override
     public void deleteItem(UUID itemId) {
+        // TODO check if not exists
         itemMapper.deleteItem(itemId);
     }
 }

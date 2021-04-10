@@ -17,5 +17,5 @@ public interface IReviewService {
 
     void updateReview(UUID shopId, Review item);
 
-    void deleteById(UUID shopId, UUID itemId);
+    void deleteById(UUID itemId);
 }
