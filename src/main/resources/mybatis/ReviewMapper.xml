@@ -4,15 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.coffee.nostresso.model.mapper.ReviewMapper">
 
-    <select id="findReviewById" resultType="ru.coffee.nostresso.model.entity.Review">
-        select id, shop_id, user_id, description, rate, date_updated from review
-        where id = #{reviewId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
-    </select>
-
     <select id="findAllReviews" resultType="ru.coffee.nostresso.model.entity.Review">
         select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
         from reviews
         where is_deleted = false
+    </select>
+    <select id="findReviewById" resultType="ru.coffee.nostresso.model.entity.Review">
+        select id, shop_id, user_id, description, rate, date_updated from reviews
+        where id = #{reviewId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </select>
     <select id="findReviewByShop" resultType="ru.coffee.nostresso.model.entity.Review">
         select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
@@ -45,12 +44,12 @@
         update reviews
         set description  = #{description},
             rate         = #{rate},
-            shop_id      = #{shopId},
-            user_id      = #{userId},
+            shop_id      = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+            user_id      = #{userId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
             date_updated = now()
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
-    <update id="deleteById">
+    <update id="deleteReviewById">
         update reviews
         set is_deleted = true,
             date_updated = now()

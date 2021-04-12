@@ -50,7 +50,7 @@ public class ReviewServiceImpl implements IReviewService {
     @Override
     public void deleteById(UUID reviewId) {
         var shopId = reviewMapper.findReviewById(reviewId).getShopId();
-        reviewMapper.deleteById(reviewId);
+        reviewMapper.deleteReviewById(reviewId);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
     }
 }

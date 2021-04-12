@@ -39,13 +39,13 @@
         update shops
         set middle_rate  = #{rate},
             date_updated = now()
-        where id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+        where id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
 
     <update id="deleteShopById">
         update shops
         set is_deleted= true,
             date_updated=now()
-        where id = #{coffeeShopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
+        where id = #{coffeeShopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
 </mapper>

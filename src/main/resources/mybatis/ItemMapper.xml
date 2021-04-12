@@ -29,7 +29,7 @@
         set name         = #{name},
             volume       = #{volume},
             cost         = #{cost},
-            shop_id      = #{shopId},
+            shop_id      = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
             date_updated = now()
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>
