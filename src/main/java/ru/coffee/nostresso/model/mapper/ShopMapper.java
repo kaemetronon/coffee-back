@@ -19,4 +19,6 @@ public interface ShopMapper {
     void updateShopMiddleRate(UUID shopId, Double rate);
 
     void deleteShopById(UUID coffeeShopId);
+
+    Shop findShopById(UUID id);
 }

@@ -11,9 +11,9 @@ public interface IItemService {
 
     List<Item> getItemsByShop(UUID shopId);
 
-    UUID addItem(Item item);
+    Item addItem(Item item);
 
-    void updateItem(Item item);
+    Item updateItem(Item item);
 
     void deleteItem(UUID itemId);
 }

@@ -12,9 +12,13 @@ import java.util.UUID;
 public interface UserMapper {
     List<User> findAllUsers();
 
+    User getUserById(UUID id);
+
     void addUser(UUID id, User user);
 
     void updateUser(User user);
 
     void deleteUserById(UUID userId);
+
+
 }

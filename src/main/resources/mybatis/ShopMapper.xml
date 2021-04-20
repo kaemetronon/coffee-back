@@ -15,6 +15,17 @@
         from shops
         where is_deleted = false
     </select>
+    <select id="findShopById" resultType="ru.coffee.nostresso.model.entity.Shop">
+        select id,
+               name,
+               description,
+               phone,
+               img,
+               date_updated as dateUpdated,
+               middle_rate  as middleRate
+        from shops
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+    </select>
 
     <insert id="addShop">
         insert into shops (id, name, description, phone, img, middle_rate)

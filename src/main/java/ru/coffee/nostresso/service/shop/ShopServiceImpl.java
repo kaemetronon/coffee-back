@@ -26,16 +26,17 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public UUID addShop(Shop shop) {
+    public Shop addShop(Shop shop) {
         var id = UUID.randomUUID();
         shopMapper.addShop(id, shop);
-        return id;
+        return shopMapper.findShopById(id);
     }
 
     @Override
-    public void updateShop(Shop shop) {
+    public Shop updateShop(Shop shop) {
         // TODO check if not exists
         shopMapper.updateShop(shop);
+        return shopMapper.findShopById(shop.getId());
     }
 
     public void updateShopMiddleRate(UUID shopId, List<Long> rates) {
@@ -61,8 +62,9 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public void updateAddress(Address address) {
+    public Address updateAddress(Address address, UUID shopId) {
         addressMapper.updateAddress(address);
+        return addressMapper.getAddressByShopId(shopId);
     }
 
     @Override

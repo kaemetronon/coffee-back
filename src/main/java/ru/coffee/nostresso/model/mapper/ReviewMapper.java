@@ -26,4 +26,6 @@ public interface ReviewMapper {
     void updateReview(Review item);
 
     void deleteReviewById(UUID itemId);
+
+    Review getReviewById(UUID id);
 }

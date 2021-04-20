@@ -27,16 +27,17 @@ public class ItemServiceImpl implements IItemService {
     }
 
     @Override
-    public UUID addItem(Item item) {
+    public Item addItem(Item item) {
         var id = UUID.randomUUID();
         itemMapper.addItem(id, item);
-        return id;
+        return itemMapper.getItemById(id);
     }
 
     @Override
-    public void updateItem(Item item) {
+    public Item updateItem(Item item) {
         // TODO check if not exists
         itemMapper.updateItem(item);
+        return itemMapper.getItemById(item.getId());
     }
 
     @Override

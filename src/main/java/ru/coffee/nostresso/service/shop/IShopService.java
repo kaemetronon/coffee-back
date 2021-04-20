@@ -9,9 +9,9 @@ import java.util.UUID;
 public interface IShopService {
     List<Shop> findAll();
 
-    UUID addShop(Shop shop);
+    Shop addShop(Shop shop);
 
-    void updateShop(Shop shop);
+    Shop updateShop(Shop shop);
 
     void deleteById(UUID shopId);
 
@@ -19,7 +19,7 @@ public interface IShopService {
 
     void addNewAddress(UUID shopId, Address address);
 
-    void updateAddress(Address address);
+    Address updateAddress(Address address, UUID shopId);
 
     void deleteAddress(UUID shopId);
 }

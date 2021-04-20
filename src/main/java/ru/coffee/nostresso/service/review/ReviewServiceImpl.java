@@ -34,17 +34,18 @@ public class ReviewServiceImpl implements IReviewService {
     }
 
     @Override
-    public UUID addReview(UUID shopId, Review item) {
+    public Review addReview(UUID shopId, Review item) {
         var id = UUID.randomUUID();
         reviewMapper.addReview(id, item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
-        return id;
+        return reviewMapper.getReviewById(id);
     }
 
     @Override
-    public void updateReview(UUID shopId, Review item) {
+    public Review updateReview(UUID shopId, Review item) {
         reviewMapper.updateReview(item);
         shopService.updateShopMiddleRate(shopId, reviewMapper.getRatesByShop(shopId));
+        return reviewMapper.getReviewById(item.getId());
     }
 
     @Override

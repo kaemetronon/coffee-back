@@ -31,6 +31,12 @@
         where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
           and is_deleted = false
     </select>
+    <select id="getReviewById" resultType="ru.coffee.nostresso.model.entity.Review">
+        select id, description, rate, shop_id as shopId, user_id as userId, date_updated as dateUpdated
+        from reviews
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+        and is_deleted = false
+    </select>
 
     <insert id="addReview">
         insert into reviews (id, description, rate, shop_id, user_id)

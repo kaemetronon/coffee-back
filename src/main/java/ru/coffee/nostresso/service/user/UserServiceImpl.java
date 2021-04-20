@@ -22,15 +22,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UUID addUser(User user) {
+    public User addUser(User user) {
         var id = UUID.randomUUID();
         userMapper.addUser(id, user);
-        return id;
+        return userMapper.getUserById(id);
     }
 
     @Override
-    public void updateUser(User user) {
+    public User updateUser(User user) {
         userMapper.updateUser(user);
+        return userMapper.getUserById(user.getId());
     }
 
     @Override
