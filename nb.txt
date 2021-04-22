@@ -11,10 +11,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
     }
 }
 
-сборка
-в проекте обязательно должны быть
-.mvn
-mvnw / mvnw.cmd
-
-mvnw clean
-mvnw spring-boot:run
+СБОРКА
+mvnw clean package spring-boot:repackage
+java -jar target/coffee.jar

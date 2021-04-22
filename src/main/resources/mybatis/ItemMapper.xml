@@ -14,6 +14,12 @@
                where shop_id = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
           and is_deleted = false
     </select>
+    <select id="getItemById" resultType="ru.coffee.nostresso.model.entity.Item">
+        select id, name, volume, cost, date_updated as dateUpdated, shop_id as shopId
+        from items
+        where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
+          and is_deleted = false
+    </select>
 
     <insert id="addItem">
         insert into items (id, name, volume, cost, shop_id)
@@ -29,7 +35,7 @@
         set name         = #{name},
             volume       = #{volume},
             cost         = #{cost},
-            shop_id      = #{shopId},
+            shop_id      = #{shopId, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler},
             date_updated = now()
         where id = #{id, javaType=java.util.UUID,jdbcType=OTHER,typeHandler=UuidTypeHandler}
     </update>

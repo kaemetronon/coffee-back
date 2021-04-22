@@ -10,11 +10,15 @@ import java.util.UUID;
 @Repository
 @Mapper
 public interface UserMapper {
-    List<User> findAll();
+    List<User> findAllUsers();
+
+    User getUserById(UUID id);
 
     void addUser(UUID id, User user);
 
     void updateUser(User user);
 
-    void deleteById(UUID userId);
+    void deleteUserById(UUID userId);
+
+
 }

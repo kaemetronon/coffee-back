@@ -19,4 +19,6 @@ public interface ItemMapper {
     void updateItem(Item item);
 
     void deleteItem(UUID id);
+
+    Item getItemById(UUID id);
 }

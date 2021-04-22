@@ -13,9 +13,9 @@ public interface IReviewService {
 
     List<Review> findByUser(UUID userId);
 
-    UUID addReview(UUID shopId, Review item);
+    Review addReview(UUID shopId, Review item);
 
-    void updateReview(UUID shopId, Review item);
+    Review updateReview(UUID shopId, Review item);
 
-    void deleteById(UUID shopId, UUID itemId);
+    void deleteById(UUID itemId);
 }

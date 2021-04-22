@@ -1,6 +1,8 @@
 package ru.coffee.nostresso.controller.common;
 
-import lombok.AllArgsConstructor;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +13,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/shop")
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Api(value = "Shops Controller", description = "доступен всем")
 public class ShopsController {
 
     private final IShopService shopService;
 
-    @GetMapping
+    @GetMapping("/all")
+    @ApiOperation(value = "Получение списка всех кофеен", response = Iterable.class)
     public List<Shop> getAllCoffeeShops() {
         return shopService.findAll();
     }

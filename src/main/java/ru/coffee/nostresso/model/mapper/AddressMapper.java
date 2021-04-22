@@ -10,9 +10,9 @@ import java.util.UUID;
 @Mapper
 public interface AddressMapper {
 
-    Address getByShopId(UUID shopId);
+    Address getAddressByShopId(UUID shopId);
 
     void updateAddress(Address a);
 
-    void deleteByShopId(UUID shopId);
+    void deleteAddressByShopId(UUID shopId);
 }

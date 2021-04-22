@@ -1,8 +1,11 @@
 package ru.coffee.nostresso.controller.admin;
 
-import lombok.AllArgsConstructor;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.Address;
+import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.model.entity.Shop;
 import ru.coffee.nostresso.service.shop.IShopService;
 
@@ -10,32 +13,36 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/admin/shop")
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Api(value = "Shop Controller", description = "только для админов")
 public class AdminShopController {
 
     private final IShopService shopService;
 
     @PostMapping
-    public UUID addCoffeeShop(@RequestBody Shop shop) {
+    @ApiOperation(value = "Добавление кофейни", response = Shop.class)
+    public Shop addCoffeeShop(@RequestBody Shop shop) {
         return shopService.addShop(shop);
     }
 
     @PutMapping
-    public String updateCoffeeShop(@RequestBody Shop shop) {
-        shopService.updateShop(shop);
-        return "Shop updated";
+    @ApiOperation(value = "Обновление инфы о кефейне(доступно только админу конкретной кофейни)",
+            response = Shop.class)
+    public Shop updateCoffeeShop(@RequestBody Shop shop) {
+        return shopService.updateShop(shop);
     }
 
     @PutMapping("/edit_addr")
-    public String setNewAddressForShop(@RequestParam UUID shopId, @RequestBody Address address) {
+    @ApiOperation(value = "Обновление инфы об адресе для кофейни", response = Address.class)
+    public Address setNewAddressForShop(@RequestParam UUID shopId, @RequestBody Address address) {
         address.setShopId(shopId);
-        shopService.updateAddress(address);
-        return "Address updated";
+        return shopService.updateAddress(address, shopId);
     }
 
     @DeleteMapping
+    @ApiOperation(value = "Удаление кофейни", response = Address.class)
     public String deleteCoffeeShop(@RequestParam UUID shopId) {
         shopService.deleteById(shopId);
-        return "CoffeeShop " + shopId + " deleted";
+        return "CoffeeShop deleted";
     }
 }

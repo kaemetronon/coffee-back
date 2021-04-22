@@ -10,7 +10,7 @@ import java.util.UUID;
 @Repository
 @Mapper
 public interface ShopMapper {
-    List<Shop> findAll();
+    List<Shop> findAllShops();
 
     void addShop(UUID id, Shop shop);
 
@@ -18,5 +18,7 @@ public interface ShopMapper {
 
     void updateShopMiddleRate(UUID shopId, Double rate);
 
-    void deleteById(UUID coffeeShopId);
+    void deleteShopById(UUID coffeeShopId);
+
+    Shop findShopById(UUID id);
 }

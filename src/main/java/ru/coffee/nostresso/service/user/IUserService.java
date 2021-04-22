@@ -1,20 +1,16 @@
 package ru.coffee.nostresso.service.user;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.coffee.nostresso.model.entity.User;
 
 import java.util.List;
+import java.util.UUID;
 
-public interface IUserService extends UserDetailsService{
+public interface IUserService {
     List<User> findAll();
 
-    Long addUser(Long id);
+    User addUser(User user);
 
-    Long addAdmin(Long id);
+    User updateUser(User user);
 
-
-    void deleteById(Long userId);
-
-    UserDetails loadUserByUsername(String s);
+    void deleteById(UUID userId);
 }

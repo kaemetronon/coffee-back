@@ -12,9 +12,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Item {
     private UUID id;
+    private UUID shopId;
     private String name;
     private String volume;
     private Long cost;
     private LocalDateTime dateUpdated;
-    private UUID shopId;
 }
