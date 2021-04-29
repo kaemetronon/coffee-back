@@ -10,7 +10,7 @@ public class SecurityUser implements UserDetails {
 
     private Long id;
     private LocalDateTime dateUpdated;
-    private Role role;
+//    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

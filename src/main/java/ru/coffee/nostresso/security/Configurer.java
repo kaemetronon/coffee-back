@@ -9,13 +9,14 @@ import ru.coffee.nostresso.service.user.IUserService;
 
 @RequiredArgsConstructor
 public class Configurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
-    private final JwtProvider jwtProvider;
-    private final VkProvider vkProvider;
+    private final RequestProvider requestProvider;
     private final IUserService userService;
 
     @Override
     public void configure(HttpSecurity httpSecurity) {
-        Filter filter = new Filter(jwtProvider, vkProvider, userService);
+        Filter filter = new Filter(requestProvider, userService);
+
+        //а нужно ли это
         httpSecurity.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
     }
 }

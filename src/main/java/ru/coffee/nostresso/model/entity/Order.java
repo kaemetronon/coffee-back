@@ -10,7 +10,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderHistory {
+public class Order {
     private UUID id;
     private UUID userId;
     private LocalDateTime dateCreated;

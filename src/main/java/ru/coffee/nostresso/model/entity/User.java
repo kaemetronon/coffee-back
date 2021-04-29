@@ -13,5 +13,10 @@ import java.util.UUID;
 public class User {
     private UUID id;
     private String name;
+    private Role role;
     private LocalDateTime dateUpdated;
+
+    public enum Role {
+        ADMIN, USER
+    }
 }
