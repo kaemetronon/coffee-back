@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.coffee.nostresso.model.entity.Address;
-import ru.coffee.nostresso.model.entity.Item;
 import ru.coffee.nostresso.model.entity.Shop;
 import ru.coffee.nostresso.service.shop.IShopService;
 
@@ -26,7 +25,7 @@ public class AdminShopController {
     }
 
     @PutMapping
-    @ApiOperation(value = "Обновление инфы о кефейне(доступно только админу конкретной кофейни)",
+    @ApiOperation(value = "Обновление инфы о кoфейне(доступно только админу конкретной кофейни)",
             response = Shop.class)
     public Shop updateCoffeeShop(@RequestBody Shop shop) {
         return shopService.updateShop(shop);
