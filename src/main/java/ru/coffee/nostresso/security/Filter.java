@@ -24,7 +24,6 @@ public class Filter extends GenericFilterBean {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
 //        if (ValidateRequest.doValidate(servletRequest.getParameterMap(), clientSecret))
-        ((HttpServletResponse)res).setHeader("Access-Control-Allow-Origin", "*");
             filterChain.doFilter(req, res);
 //        else
 //            throw new RuntimeException("Invalid params");
