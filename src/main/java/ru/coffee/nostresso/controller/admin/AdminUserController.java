@@ -19,7 +19,7 @@ public class AdminUserController {
     private final IUserService userService;
 
     @GetMapping("/")
-    @ApiOperation(value = "Получение всех пользователей(мб кусок кода отсюда потом пригодится)",
+    @ApiOperation(value = "Получение всех пользователей(мб кусок кода отсюда потом пригодитсяx  )",
             response = Iterable.class)
     public List<User> getUsers() {
         return userService.findAll();

@@ -8,6 +8,7 @@ import ru.coffee.nostresso.service.user.IUserService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class Filter extends OncePerRequestFilter {
 //        throw new RuntimeException("нет ни параметров запуска, ни токена");
         }
 
+        res.setHeader("Access-Control-Allow-Origin", "*");
         filterChain.doFilter(req, res);
     }
 }
