@@ -9,6 +9,8 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
@@ -19,10 +21,11 @@ public class Filter extends GenericFilterBean {
     private String clientSecret;
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
 //        if (ValidateRequest.doValidate(servletRequest.getParameterMap(), clientSecret))
-            filterChain.doFilter(servletRequest, servletResponse);
+        ((HttpServletResponse)res).setHeader("Access-Control-Allow-Origin", "*");
+            filterChain.doFilter(req, res);
 //        else
 //            throw new RuntimeException("Invalid params");
     }
