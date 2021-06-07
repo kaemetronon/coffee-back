@@ -10,11 +10,17 @@ import java.util.Arrays;
 
 @RestControllerAdvice
 public class ControllerAdvice {
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<FailResponce> handle(Exception e) {
+//        e.printStackTrace();
+//        return new ResponseEntity<>(
+//                new FailResponce(e.getMessage() +  Arrays.toString(e.getStackTrace())),
+//                HttpStatus.valueOf(501));
+//    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<FailResponce> handle(Exception e) {
+    public ResponseEntity<String> handle(Exception e) {
         e.printStackTrace();
-        return new ResponseEntity<>(
-                new FailResponce(e.getMessage() +  Arrays.toString(e.getStackTrace())),
-                HttpStatus.valueOf(501));
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.valueOf(500));
     }
 }

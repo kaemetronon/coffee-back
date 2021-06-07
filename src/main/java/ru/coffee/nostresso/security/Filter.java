@@ -15,9 +15,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class Filter extends GenericFilterBean {
 
-    @Value("${vk.secret}")
-    private String clientSecret;
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {

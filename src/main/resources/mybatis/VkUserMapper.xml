@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ru.coffee.nostresso.model.mapper.VkUserMapper">
+
+    <select id="findByVkId" resultType="ru.coffee.nostresso.model.entity.VkUser">
+        select vk_id
+        from vk_users
+        where vk_id = #{id}
+    </select>
+
+    <insert id="saveVkUser">
+        insert into vk_users(vk_id)
+        values (#{id})
+    </insert>
+
+</mapper>
