@@ -5,7 +5,7 @@
 <mapper namespace="ru.coffee.nostresso.model.mapper.VkUserMapper">
 
     <select id="findByVkId" resultType="ru.coffee.nostresso.model.entity.VkUser">
-        select vk_id
+        select vk_id as id
         from vk_users
         where vk_id = #{id}
     </select>

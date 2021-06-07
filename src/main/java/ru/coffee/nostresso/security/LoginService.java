@@ -52,14 +52,16 @@ public class LoginService {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        var vkId = Long.valueOf(params.get("vk_user_id"));
-        if (mapper.findByVkId(vkId) == null)
-            mapper.saveVkUser(new VkUser() {{
-                setId(vkId);
-            }});
 
-        if (validateVkParams(params))
+        if (validateVkParams(params)) {
+            var vkId = Long.valueOf(params.get("vk_user_id"));
+            if (mapper.findByVkId(vkId) == null)
+                mapper.saveVkUser(new VkUser() {{
+                    setId(vkId);
+                }});
             return makeJWT(params);
+        }
+
         else throw new VkParamsException("Bad vk params");
     }
 
