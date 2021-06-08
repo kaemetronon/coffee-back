@@ -1,4 +1,4 @@
-package ru.coffee.nostresso.model;
+package ru.coffee.nostresso.model.dto;
 
 import lombok.Data;
 

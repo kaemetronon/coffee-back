@@ -1,13 +1,9 @@
 package ru.coffee.nostresso.security;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.coffee.nostresso.exception.VkParamsException;
 import ru.coffee.nostresso.model.entity.VkUser;
 import ru.coffee.nostresso.model.mapper.VkUserMapper;
 
@@ -18,9 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.time.Instant;
 import java.util.Base64;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,7 +22,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class LoginService {
+public class VkParamsParseService {
+
     private static final String ENCODING = "UTF-8";
     private final String urlPart = "https://example.com/";
 
@@ -37,35 +32,32 @@ public class LoginService {
     @Value("${vk.secret}")
     private String clientSecret;
 
-    @Value("${serv.token.expires}")
-    private Long tokenExpiresSeconds;
+    public String updateUserInDb(String url) {
+        Map<String, String> params = makeParamMap(url);
+        var id = params.get("vk_user_id");
 
-    @Value("${serv.token.secret}")
-    private String tokenSecret;
+        if (mapper.findByUsername(id) == null)
+            mapper.saveVkUser(new VkUser() {{
+                setId(id);
+                setPassword(id);
+            }});
+        return id.toString();
+    }
 
-    @Transactional
-    public String makeToken(String url) {
+    private Map<String, String> makeParamMap(String url) {
         url = urlPart.concat(url);
         Map<String, String> params = null;
         try {
-            params = getQueryParams(new URL(url));
+            return getQueryParams(new URL(url));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
-        if (validateVkParams(params)) {
-            var vkId = Long.valueOf(params.get("vk_user_id"));
-            if (mapper.findByVkId(vkId) == null)
-                mapper.saveVkUser(new VkUser() {{
-                    setId(vkId);
-                }});
-            return makeJWT(params);
-        }
-
-        else throw new VkParamsException("Bad vk params");
+        return null;
     }
 
-    private boolean validateVkParams(Map<String, String> params) {
+    public boolean validateVkParams(String url) {
+
+        Map<String, String> params = makeParamMap(url);
 
         String checkString = params.entrySet().stream()
                 .filter(e -> e.getValue() != null)
@@ -73,6 +65,9 @@ public class LoginService {
                 .sorted(Map.Entry.comparingByKey())
                 .map(entry -> encode(entry.getKey()) + "=" + encode(entry.getValue()))
                 .collect(Collectors.joining("&"));
+
+        if (params.get("vk_user_id").isEmpty())
+            return false;
 
         String sign;
         try {
@@ -82,25 +77,6 @@ public class LoginService {
             return false;
         }
         return sign.equals(params.getOrDefault("sign", ""));
-    }
-
-    private String makeJWT(Map<String, String> params) {
-        String vkUserId = params.get("vk_user_id");
-        String vkAppId = params.get("vk_app_id");
-        Long issuedAt = Long.valueOf(params.get("vk_ts"));
-
-        if (vkUserId.isEmpty() || vkAppId.isEmpty())
-            throw new RuntimeException();
-        Date dateIssuedAt = Date.from(Instant.ofEpochSecond(issuedAt));
-        Date dateExpires = Date.from(Instant.ofEpochSecond(issuedAt + tokenExpiresSeconds));
-
-        return Jwts.builder()
-                .setIssuer(vkAppId)
-                .setSubject(vkUserId)
-                .setIssuedAt(dateIssuedAt)
-                .setExpiration(dateExpires)
-                .signWith(SignatureAlgorithm.HS512, tokenSecret)
-                .compact();
     }
 
     private Map<String, String> getQueryParams(URL url) {

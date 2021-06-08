@@ -12,7 +12,7 @@ import java.util.UUID;
 @Mapper
 public interface VkUserMapper {
 
-    VkUser findByVkId(Long id);
+    VkUser findByUsername(String username);
 
     void saveVkUser(VkUser user);
 }
