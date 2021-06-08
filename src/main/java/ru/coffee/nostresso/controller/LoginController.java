@@ -17,7 +17,6 @@ import ru.coffee.nostresso.model.dto.TokenResponse;
 import ru.coffee.nostresso.security.JwtService;
 import ru.coffee.nostresso.security.VkParamsParseService;
 
-@CrossOrigin
 @RequiredArgsConstructor
 @RestController
 public class LoginController {
